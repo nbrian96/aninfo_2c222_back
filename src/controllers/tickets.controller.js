@@ -135,7 +135,8 @@ export const updateTicket = async (req, res) => {
         dato_contacto,
         id_producto,
         fecha_emision,
-        fecha_resolucion
+        fecha_resolucion,
+        id
       ]
     );
 

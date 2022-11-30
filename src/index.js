@@ -10,5 +10,5 @@ npm run dev
 mysql -u root -p
 */
 
-app.listen(PORT); // Puerto 3500, puede ser otro.
+app.listen(PORT);
 console.log("Server running on port", PORT);
