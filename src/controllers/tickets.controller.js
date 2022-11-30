@@ -2,7 +2,7 @@ import { pooldb } from "../db.js";
 
 export const getTickets = async (req, res) => {
 	try {
-		let [rows] = await pooldb.query("select * from tickets");
+		let [rows] = await pooldb.query("select * from tbl_ticket");
 		res.json(rows);
 	} catch (error) {
 		return res.status(500).json({
@@ -14,7 +14,7 @@ export const getTickets = async (req, res) => {
 export const getTicket = async (req, res) => {
 	try {
 		// req.params -> guarda todos los parametros enviados
-		let [rows] = await pooldb.query("select * from tickets where id = ?", [
+		let [rows] = await pooldb.query("select * from tbl_ticket where id = ?", [
 			req.params.id,
 		]);
 
@@ -62,7 +62,7 @@ export const createTicket = async (req, res) => {
 
 export const deteleTicket = async (req, res) => {
 	try {
-		let [rows] = await pooldb.query("delete from tickets where id = ?", [
+		let [rows] = await pooldb.query("delete from tbl_ticket where id = ?", [
 			req.params.id,
 		]);
 
