@@ -45,7 +45,7 @@ export const createTicket = async (req, res) => {
     } = req.body;
 
     let [rows] = await pooldb.query(
-      "insert into tbl_ticket (id_tarea, id_producto, nombre, descripcion, severidad, estado, fecha_emision, tbl_ticketcol) values (?, ?, ?, ?, ?, ?, ?, ?)",
+      "insert into tbl_ticket (id_tarea, id_producto, nombre, descripcion, severidad, estado, fecha_resolucion, tbl_ticketcol) values (?, ?, ?, ?, ?, ?, ?, ?)",
       [
         id_tarea,
         id_producto,
