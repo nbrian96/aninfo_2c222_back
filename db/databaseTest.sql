@@ -82,7 +82,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `psa`.`tbl_ticket`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `psa`.`tbl_ticket` (
+CREATE TABLE IF NOT EXISTS `tbl_ticket` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_tarea` INT NOT NULL,
   `id_producto` INT NOT NULL,
@@ -93,20 +93,7 @@ CREATE TABLE IF NOT EXISTS `psa`.`tbl_ticket` (
   `fecha_emision` DATETIME NULL,
   `fecha_resolucion` DATETIME NULL,
   `tbl_ticketcol` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `codigo_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `id_idx` (`id_tarea` ASC) INVISIBLE,
-  INDEX `id_producto_idx` (`id_producto` ASC) VISIBLE,
-  CONSTRAINT `id_tarea`
-    FOREIGN KEY (`id_tarea`)
-    REFERENCES `psa`.`tbl_tarea` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `id_productot`
-    FOREIGN KEY (`id_producto`)
-    REFERENCES `psa`.`tbl_producto` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
