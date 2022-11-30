@@ -39,19 +39,19 @@ export const createTicket = async (req, res) => {
 		let month = today.getMonth() + 1; // `getMonth()` devuelve el mes (de 0 a 11)
 		let year = today.getFullYear(); // `getFullYear()` devuelve el año completo
 
-		let fechaDeEmision = `${year}-${month}-${day}`;
+		let fecha_emision = `${year}-${month}-${day}`;
 		let { name, descripcion } = req.body;
 
 		let [rows] = await pooldb.query(
-			"insert into tickets (name, descripcion, fechaDeEmision) values (?, ?, ?)",
-			[name, descripcion, fechaDeEmision]
+			"insert into tbl_ticket (name, descripcion, fecha_emision) values (?, ?, ?)",
+			[nombre, descripcion, fecha_emision]
 		);
 
 		res.send({
 			id: rows.insertId,
 			name,
 			descripcion,
-			fechaDeEmision,
+			fecha_emision,
 		});
 	} catch (error) {
 		return res.status(500).json({
