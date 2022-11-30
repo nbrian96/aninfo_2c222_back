@@ -82,16 +82,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `psa`.`tbl_ticket`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tbl_ticket` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `id_tarea` INT NOT NULL,
-  `id_producto` INT NOT NULL,
-  `nombre` VARCHAR(45) NULL,
-  `descripcion` MEDIUMTEXT NULL,
-  `severidad` VARCHAR(45) NULL,
-  `estado` VARCHAR(45) NULL,
-  `fecha_emision` DATETIME NULL,
-  `fecha_resolucion` DATETIME NULL,
+CREATE TABLE `tbl_ticket` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_tarea` INT UNSIGNED,
+  `id_producto` INT UNSIGNED NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` MEDIUMTEXT NOT NULL,
+  `severidad` VARCHAR(45) NOT NULL,
+  `estado` VARCHAR(45) NOT NULL,
+  `fecha_emision` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_resolucion` DATETIME NOT NULL,
   `tbl_ticketcol` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
