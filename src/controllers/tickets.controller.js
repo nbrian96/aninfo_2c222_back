@@ -106,20 +106,51 @@ export const deteleTicket = async (req, res) => {
 };
 
 export const updateTicket = async (req, res) => {
-  let { id } = req.params;
-  let { name, descripcion } = req.body;
+  try {
+    let { id } = req.params;
+    let {
+      id_responsable,
+      severidad,
+      estado,
+      titulo,
+      descripcion,
+      id_cliente,
+      medio_contacto,
+      dato_contacto,
+      id_producto,
+      fecha_emision,
+      fecha_resolucion
+    } = req.body;
 
-  let [rows] = await pooldb.query(
-    "update tickets set name = ?, descripcion = ?  where id = ?",
-    [name, descripcion, id]
-  );
+    let [rows] = await pooldb.query(
+      "update tbl_ticket set id_responsable = ?,severidad = ?,estado = ?,titulo = ?,descripcion = ?,id_cliente = ?,medio_contacto = ?,dato_contacto = ?,id_producto = ?,fecha_emision = ?,fecha_resolucion = ?  where id = ?",
+      [
+        id_responsable,
+        severidad,
+        estado,
+        titulo,
+        descripcion,
+        id_cliente,
+        medio_contacto,
+        dato_contacto,
+        id_producto,
+        fecha_emision,
+        fecha_resolucion
+      ]
+    );
 
-  if (rows.affectedRows < 1)
-    return res.status(404).json({
-      message: "Ticket not found",
+    if (rows.affectedRows < 1)
+      return res.status(404).json({
+        message: "Ticket not found",
+      });
+
+    let [result] = await pooldb.query("select * from tbl_ticket where id = ?", [id]);
+
+    res.json(result[0]);
+
+  } catch (error) {
+    return res.status(500).json({
+      message: "Something goes wrong",
     });
-
-  let [result] = await pooldb.query("select * from tickets where id = ?", [id]);
-
-  res.json(result[0]);
+  }
 };
