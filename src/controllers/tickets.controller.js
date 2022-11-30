@@ -2,7 +2,7 @@ import { pooldb } from "../db.js";
 
 export const getTickets = async (req, res) => {
 	try {
-		let [rows] = await pooldb.query("select * from tickets");
+		let [rows] = await pooldb.query("select * from tbl_ticket");
 		res.json(rows);
 	} catch (error) {
 		return res.status(500).json({
