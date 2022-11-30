@@ -34,41 +34,50 @@ export const getTicket = async (req, res) => {
 export const createTicket = async (req, res) => {
   try {
     let {
-      id_tarea,
-      id_producto,
-      nombre,
-      descripcion,
+      id_responsable,
       severidad,
       estado,
-      fecha_resolucion,
-      tbl_ticketcol,
+      titulo,
+      descripcion,
+      id_cliente,
+      medio_contacto,
+      dato_contacto,
+      id_producto,
+      fecha_emision,
+      fecha_resolucion
     } = req.body;
 
     let [rows] = await pooldb.query(
-      "insert into tbl_ticket (id_tarea, id_producto, nombre, descripcion, severidad, estado, fecha_resolucion, tbl_ticketcol) values (?, ?, ?, ?, ?, ?, ?, ?)",
+      "insert into tbl_ticket (id_responsable,severidad,estado,titulo,descripcion,id_cliente,medio_contacto,dato_contacto,id_producto,fecha_emision,fecha_resolucion) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
-        id_tarea,
-        id_producto,
-        nombre,
-        descripcion,
+        id_responsable,
         severidad,
         estado,
-        fecha_resolucion,
-        tbl_ticketcol,
+        titulo,
+        descripcion,
+        id_cliente,
+        medio_contacto,
+        dato_contacto,
+        id_producto,
+        fecha_emision,
+        fecha_resolucion
       ]
     );
 
+    console.log(rows);
     res.send({
       id: rows.insertId,
-      id_tarea,
-      id_producto,
-      nombre,
-      descripcion,
+      id_responsable,
       severidad,
       estado,
+      titulo,
+      descripcion,
+      id_cliente,
+      medio_contacto,
+      dato_contacto,
+      id_producto,
       fecha_emision,
-      fecha_resolucion,
-      tbl_ticketcol,
+      fecha_resolucion
     });
   } catch (error) {
     return res.status(500).json({

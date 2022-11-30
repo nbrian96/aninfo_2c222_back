@@ -82,19 +82,23 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `psa`.`tbl_ticket`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `tbl_ticket`;
 CREATE TABLE `tbl_ticket` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_tarea` INT UNSIGNED,
-  `id_producto` INT UNSIGNED NOT NULL,
-  `nombre` VARCHAR(45) NOT NULL,
+  `id_responsable` INT UNSIGNED NOT NULL,
+  `severidad` VARCHAR(50) NOT NULL,
+  `estado` VARCHAR(50) NOT NULL,
+  `titulo` VARCHAR(45) NOT NULL,
   `descripcion` MEDIUMTEXT NOT NULL,
-  `severidad` VARCHAR(45) NOT NULL,
-  `estado` VARCHAR(45) NOT NULL,
+  `id_cliente` INT UNSIGNED NOT NULL,
+  `medio_contacto` VARCHAR(50) NOT NULL,
+  `dato_contacto` VARCHAR(50) NOT NULL,
+  `id_producto` INT UNSIGNED NULL DEFAULT NULL,
   `fecha_emision` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fecha_resolucion` DATETIME NOT NULL,
-  `tbl_ticketcol` VARCHAR(45) NULL,
+  `fecha_resolucion` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
