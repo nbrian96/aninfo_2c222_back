@@ -29,19 +29,28 @@ export const createProject = async (req, res) => {
     }
 };
 
-export const getByProjectId = async (req, res) => {
+export const getProject = async (req, res) => {
     try {
         let [rows] = await pooldb.query("SELECT * from tbl_proyecto where id = ?", [req.params.id]);
-        if (rows[0].lenght == 0)
+        //Bug: si el proyecto no existe no devuelve el 404
+        if (rows.lenght <= 0)
             return res.status(404).json({
                 message: "Project not found",
             });
-        //res.status(200).json(rows[0]);
-        res.status(200).send(rows);
+        res.status(200).json(rows[0]);
     } catch (error) {
         return res.status(500).send(error);
     }
 };
+
+export const getByProjectName = async(req,res) => {
+    try{
+        const [result] = await pooldb.query('SELECT * FROM tbl_proyecto WHERE nombre = ?', [req.params.nombre]);
+        return res.status(200).json(result);
+    } catch(error){
+        res.status(500).send(error);
+    }
+}
 
 export const deleteProject = async (req, res) => {
     try {

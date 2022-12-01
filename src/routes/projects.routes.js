@@ -1,15 +1,18 @@
 import { Router } from "express";
 import {
 	getProjects,
-	getByProjectId,
+	getProject,
 	createProject,
 	deleteProject,
 	updateProject,
+	getByProjectName,
 } from "../controllers/projects.controller.js";
 
 const router = Router();
 
-router.get('/proyectos/:id', getByProjectId);
+router.get('/proyectos/:id', getProject);
+
+router.get('/proyectos/:nombre', getByProjectName);
 
 router.get('/proyectos', getProjects);
 
