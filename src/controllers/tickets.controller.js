@@ -156,8 +156,13 @@ export const updateTicket = async (req, res) => {
     res.json(result[0]);
 
   } catch (error) {
+    const loQueEnvian = req.body;
+    res.status(500).send({loQueEnvian});
+
+    /*
     return res.status(500).json({
       message: "Something goes wrong",
     });
+    */
   }
 };
