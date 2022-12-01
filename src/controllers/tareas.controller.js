@@ -54,17 +54,15 @@ export const createTarea = async (req, res) => {
 	try {
 		let {
 			id_proyecto,
-			severidad,
 			estado,
 			descripcion,
 			horas_estimadas
 		} = req.body;
 
 		let [rows] = await pooldb.query(
-			"insert into tbl_tarea (id_proyecto,severidad,estado,descripcion,horas_estimadas) values (?, ?, ?, ?, ?)",
+			"insert into tbl_tarea (id_proyecto,estado,descripcion,horas_estimadas) values (?, ?, ?, ?)",
 			[
 				id_proyecto,
-				severidad,
 				estado,
 				descripcion,
 				horas_estimadas
@@ -75,7 +73,6 @@ export const createTarea = async (req, res) => {
 		res.send({
 			id: rows.insertId,
 			id_proyecto,
-			severidad,
 			estado,
 			descripcion,
 			horas_estimadas
@@ -93,17 +90,15 @@ export const updateTarea = async (req, res) => {
 
 		let {
 			id_proyecto,
-			severidad,
 			estado,
 			descripcion,
 			horas_estimadas
 		} = req.body;
 
 		let [rows] = await pooldb.query(
-			"update tbl_tarea set id_proyecto = ?,severidad = ?,estado = ?,descripcion = ?,horas_estimadas = ?  where id = ?",
+			"update tbl_tarea set id_proyecto = ?,estado = ?,descripcion = ?,horas_estimadas = ?  where id = ?",
 			[
 				id_proyecto,
-				severidad,
 				estado,
 				descripcion,
 				horas_estimadas,
@@ -126,7 +121,3 @@ export const updateTarea = async (req, res) => {
 		});
 	}
 };
-
-export const getTareaEmpleado = async (req, res) => {
-
-}
