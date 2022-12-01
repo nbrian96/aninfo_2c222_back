@@ -94,17 +94,35 @@ export const updateClient = async (req, res) => {
     }
   };
 
-export const deleteClient = async (req, res) => {
+// export const deleteClient = async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const [rows] = await pooldb.query("DELETE FROM tbl_cliente WHERE id = ?", [id]);
+
+//         if (rows.affectedRows <= 0) {
+//             return res.status(404).json({ message: "Cliente not found" });
+//         }
+
+//         res.sendStatus(204);
+//     } catch (error) {
+//         return res.status(500).json({ message: "Something goes wrong" });
+//     }
+// };
+export const deteleClient = async (req, res) => {
     try {
-        const { id } = req.params;
-        const [rows] = await pooldb.query("DELETE FROM tbl_cliente WHERE id = ?", [id]);
-
-        if (rows.affectedRows <= 0) {
-            return res.status(404).json({ message: "Cliente not found" });
-        }
-
-        res.sendStatus(204);
+      let [rows] = await pooldb.query("delete from tbl_client where id = ?", [
+        req.params.id,
+      ]);
+  
+      if (rows.affectedRows < 1)
+        return res.status(404).json({
+          message: "Ticket not found",
+        });
+  
+      res.sendStatus(204);
     } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+      return res.status(500).json({
+        message: "Something goes wrong",
+      });
     }
-};
+  };
