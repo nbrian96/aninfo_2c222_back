@@ -39,9 +39,7 @@ export const getByProjectId = async (req, res) => {
         //res.status(200).json(rows[0]);
         res.status(200).send(rows);
     } catch (error) {
-        return res.status(500).json({
-            message: "Something goes wrong",
-        });
+        return res.status(500).send(error);
     }
 };
 
