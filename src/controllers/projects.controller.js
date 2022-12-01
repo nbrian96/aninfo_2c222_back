@@ -61,23 +61,8 @@ export const deleteProject = async (req, res) => {
 };
 
 export const updateProject = async (req, res) => {
-
     try {
         let { id } = req.params;
-        /*let {
-            nombre,
-            fecha_inicio,
-            fecha_fin,
-            estado,
-            prioridad,
-            costo_acumulado,
-            horas_estimadas,
-            horas_reales
-        } = req.body;*/
-        /*let [rows] = await pooldb.query(
-            "update tbl_proyecto set nombre = ?, fecha_inicio = ?, fecha_fin = ?, estado = ?, prioridad = ?, costo_acumulado = ?, horas_estimadas = ?, horas_reales = ?, where id = ?",
-            [nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimadas, horas_reales]
-        );*/
         let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [req.body, id]);
         if (rows.affectedRows < 1)
             return res.status(404).json({
@@ -85,9 +70,9 @@ export const updateProject = async (req, res) => {
             });
         let [result] = await pooldb.query("select * from tbl_proyecto where id = ?", [id]);
         res.json(result[0]);
-    } catch(error) {
+    } catch (error) {
         const loQueEnvian = req.body;
-        res.status(500).send({loQueEnvian, error});
+        res.status(500).send({ loQueEnvian, error });
     }
 
 };
