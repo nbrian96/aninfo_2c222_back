@@ -43,6 +43,24 @@ export const getGuardia = async (req, res) => {
     }
 };
 
+export const getCantGuardiasEmpleado = async (req, res) => {
+    try {
+        let { legajo_empleado } = req.params;
+        let [rows] = await pooldb.query("SELECT COUNT(fecha_inicio) as guardias_totales FROM tbl_guardia WHERE legajo_empleado = ?", [
+            legajo_empleado,
+        ]);
+
+        if (rows.length <= 0) {
+            return res.status(404).json({ message: "Horas not found" });
+        }
+
+        res.json(rows);
+    } catch (error) {
+        const loQueEnvian = req.body;
+        res.status(500).send({ loQueEnvian });
+    }
+};
+
 export const getGuardiaEmpleado = async (req, res) => {
     try {
         const { legajo } = req.params;
