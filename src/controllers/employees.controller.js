@@ -16,7 +16,7 @@ export const createEmployee = async (req, res) => {
 
 export const getEmployee = async (req, res) => {
     try {
-        const { legajo } = req.params.legajo;
+        const { legajo } = req.params;
         const [rows] = await pool.query("SELECT * FROM tbl_empleado WHERE legajo = ?", [
             legajo,
         ]);
@@ -27,8 +27,7 @@ export const getEmployee = async (req, res) => {
 
         res.json(rows[0]);
     } catch (error) {
-        // return res.status(500).send({ message: "Something goes wrong", });
-        return res.status(500).send({ error });
+        return res.status(500).json({ message: "Something goes wrong" });
     }
 };
 
