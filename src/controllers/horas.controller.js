@@ -83,13 +83,13 @@ export const updateHoras = async (req, res) => {
 
 export const createHora = async (req, res) => {
     try {
-        const { legajo, id_tarea, cant, fecha, extra } = req.body;
+        const { legajo, id_tarea, cant, fecha, estado,  extra } = req.body;
 
         const [rows] = await pooldb.query(
           "INSERT INTO tbl_horas (legajo_empleado, id_tarea, cant_horas, fecha, estado, extra) VALUES (?, ?, ?, ?, ?, ?)",
-          [legajo, id_tarea, cant, fecha, "abierto" ,extra]
+          [legajo, id_tarea, cant, fecha, estado ,extra]
         );
-        res.status(201).json({ id: rows.insertId, legajo, id_tarea, cant, fecha, estado: "abierto", extra });
+        res.status(201).json({ id: rows.insertId, legajo, id_tarea, cant, fecha, estado, extra });
       } catch (error) {
         const loQueEnvian = req.body;
         res.status(500).send({loQueEnvian});
