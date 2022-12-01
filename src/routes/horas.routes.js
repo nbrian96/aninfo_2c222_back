@@ -5,7 +5,9 @@ import {
 	deleteHora,
 	createHora,
 	updateHoras,
-	getHoraEmpleado, getHorasExtraTotalesEmpleado,
+	getHoraEmpleado, 
+	getHorasTotalesEmpleado,
+	getHorasExtraTotalesEmpleado,
 } from "../controllers/horas.controller.js";
 
 const router = Router();
