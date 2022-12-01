@@ -11,12 +11,12 @@ const router = Router();
 
 router.get("/employees", getEmployees);
 
-router.get("/employees/:id", getEmployee);
+router.get("/employees/:legajo", getEmployee);
 
 router.post("/employees", createEmployee);
 
-router.put("/employees/:id", updateEmployee);
+router.put("/employees/:legajo", updateEmployee);
 
-router.delete("/employees/:id", deleteEmployee);
+router.delete("/employees/:legajo", deleteEmployee);
 
 export default router;
