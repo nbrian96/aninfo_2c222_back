@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `tbl_licencia`;
 CREATE TABLE `tbl_licencia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `legajo_empleado` int NOT NULL,
-  `tipo_licencia` int NOT NULL,
+  `tipo_licencia` varchar(45) NOT NULL,
   `descripcion` mediumtext,
   `fecha_inicio` datetime DEFAULT NULL,
   `fecha_fin` datetime DEFAULT NULL,
