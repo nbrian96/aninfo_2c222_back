@@ -11,13 +11,18 @@ export const getProjects = async (req, res) => {
 
 export const createProject = async (req, res) => {
     try {
-        const { nombre, estado, fecha_inicio, fecha_fin } = req.body
+        const { nombre, estado, fecha_inicio, fecha_fin, prioridad, costo_acumulado, horas_estimada, horas_reales } = req.body
         const [result] = await pooldb.query('INSERT INTO tbl_proyecto SET ?', {
-            nombre: nombre,
-            estado: estado,
-            fecha_inicio: fecha_inicio,
-            fecha_fin: fecha_fin,
+            nombre,
+            fecha_inicio,
+            fecha_fin,
+            estado,
+            prioridad,
+            costo_acumulado,
+            horas_estimada,
+            horas_reales,
         });
+
         return res.status(200).json({ nombre, estado, id: result.insertId });
     } catch (error) {
         return res.status(500).json({ message: "Something goes wrong" });
@@ -44,7 +49,6 @@ export const deleteProject = async (req, res) => {
         let [rows] = await pooldb.query("delete from tbl_project where id = ?", [
             req.params.id,
         ]);
-
         if (rows.affectedRows < 1)
             return res.status(404).json({
                 message: "Project not found",
