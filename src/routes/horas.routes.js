@@ -26,8 +26,6 @@ router.get("/horas/empleado/:legajo_empleado", getHoraEmpleado);
 
 router.get("/horas/totales/empleado/:legajo_empleado", getHorasTotalesEmpleado);
 
-router.get("/horas/empleado/horas_totales/:legajo_empleado", getHorasTotalesEmpleado);
-
-router.get("/horas/empleado/horas_extra/:legajo_empleado", getHorasExtraTotalesEmpleado);
+router.get("/horas/extra/totales/empleado/:legajo_empleado", getHorasExtraTotalesEmpleado);
 
 export default router;
