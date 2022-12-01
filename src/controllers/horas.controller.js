@@ -39,7 +39,7 @@ export const getHoraEmpleado = async (req, res) => {
       return res.status(404).json({ message: "Hora not found" });
     }
 
-    res.json(rows[0]);
+    res.json(rows);
   } catch (error) {
     const loQueEnvian = req.body;
     res.status(500).send({ loQueEnvian });
