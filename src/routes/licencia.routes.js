@@ -17,6 +17,6 @@ router.post("/licencia", createLicencia);
 
 router.delete("/licencia/:id", deleteLicencia);
 
-router.get("/licencia/empleado/:legajo", getLicenciaEmpleado);
+router.get("/licencia/empleado/:legajo_empleado", getLicenciaEmpleado);
 
 export default router;
