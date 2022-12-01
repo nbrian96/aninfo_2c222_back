@@ -46,7 +46,7 @@ export const createFalta = async (req, res) => {
         const { legajo, fecha, justificante } = req.body;
 
         const [rows] = await pooldb.query(
-          "INSERT INTO tbl_horas (legajo_empleado, fecha, justificante) VALUES (?, ?, ?)",
+          "INSERT INTO tbl_faltas (legajo_empleado, fecha, justificante) VALUES (?, ?, ?)",
           [legajo, fecha, justificante]
         );
         res.status(201).json({ id: rows.insertId, legajo, fecha, justificante });
