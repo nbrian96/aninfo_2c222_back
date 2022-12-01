@@ -20,6 +20,6 @@ router.put("/horas/:id", updateHoras);
 
 router.delete("/horas/:id", deleteHora);
 
-router.get("/horas/empleado/:legajo", getHoraEmpleado);
+router.get("/horas/empleado/:legajo_empleado", getHoraEmpleado);
 
 export default router;
