@@ -96,7 +96,7 @@ export const updateClient = async (req, res) => {
 
 export const deleteClient = async (req, res) => {
     try {
-      let [rows] = await pooldb.query("delete from tbl_client where id = ?", [
+      let [rows] = await pooldb.query("delete from tbl_cliente where id = ?", [
         req.params.id,
       ]);
   
