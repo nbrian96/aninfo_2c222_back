@@ -66,12 +66,13 @@ export const updateProject = async (req, res) => {
         fecha_fin,
         estado,
         prioridad,
+        costo_acumulado,
         horas_estimadas,
-        horas_reales
+        horas_reales,
     } = req.body;
     let [rows] = await pooldb.query(
-        "update tbl_proyecto set nombre = ?, fecha_inicio = ?, fecha_fin = ?, estado = ?, prioridad = ?, horas_estimadas = ?, horas_reales = ?, where id = ?",
-        [nombre, fecha_inicio, fecha_fin, estado, prioridad, horas_estimadas, horas_reales]
+        "update tbl_proyecto set nombre = ?, fecha_inicio = ?, fecha_fin = ?, estado = ?, prioridad = ?, costo_acumulado = ?, horas_estimadas = ?, horas_reales = ?, where id = ?",
+        [nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimadas, horas_reales]
     );
     if (rows.affectedRows < 1)
         return res.status(404).json({
