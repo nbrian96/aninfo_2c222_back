@@ -63,9 +63,9 @@ export const getCantGuardiasEmpleado = async (req, res) => {
 
 export const getGuardiaEmpleado = async (req, res) => {
     try {
-        const { legajo } = req.params;
+        const { legajo_empleado } = req.params;
         const [rows] = await pooldb.query("SELECT * FROM tbl_guardia WHERE legajo_empleado = ?", [
-            legajo,
+            legajo_empleado,
         ]);
 
         if (rows.length <= 0) {
