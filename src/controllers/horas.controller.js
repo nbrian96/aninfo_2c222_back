@@ -30,8 +30,8 @@ export const getHora = async (req, res) => {
 
 export const getHoraEmpleado = async (req, res) => {
   try {
-    const { legajo_empleado } = req.params;
-    const [rows] = await pooldb.query("SELECT * FROM tbl_horas WHERE legajo_empleado = ?", [
+    let { legajo_empleado } = req.params;
+    let [rows] = await pooldb.query("SELECT * FROM tbl_horas WHERE legajo_empleado = ?", [
       legajo_empleado,
     ]);
 
