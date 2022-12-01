@@ -46,14 +46,15 @@ export const getByProjectId = async (req, res) => {
 
 export const deleteProject = async (req, res) => {
     try {
-        const {id} = req.query
-        let [rows] = await pooldb.query("delete from tbl_project where id = ?", [id]);
-        /*if (rows.affectedRows < 1)
+        let [rows] = await pooldb.query("delete from tbl_proyecto where id = ?", [
+            req.params.id,
+        ]);
+        if (rows.affectedRows < 1)
             return res.status(404).json({
                 message: "Project not found",
-            });*/
-        
-        res.status(204).json();
+            });
+
+        res.status(200).json(rows);
     } catch (error) {
         return res.status(500).json({
             message: "Something goes wrong",
