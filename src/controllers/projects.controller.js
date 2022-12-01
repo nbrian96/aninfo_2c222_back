@@ -36,7 +36,8 @@ export const getByProjectId = async (req, res) => {
             return res.status(404).json({
                 message: "Project not found",
             });
-        res.status(200).json(rows[0]);
+        //res.status(200).json(rows[0]);
+        res.status(200).send(rows);
     } catch (error) {
         return res.status(500).json({
             message: "Something goes wrong",
