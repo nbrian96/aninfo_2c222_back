@@ -51,7 +51,7 @@ export const getCantGuardiasEmpleado = async (req, res) => {
         ]);
 
         if (rows.length <= 0) {
-            return res.status(404).json({ message: "Horas not found" });
+            return res.status(404).json({ message: "Guardia not found" });
         }
 
         res.json(rows);
