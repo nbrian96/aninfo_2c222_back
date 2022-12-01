@@ -5,15 +5,12 @@ export const getVersions = async (req, res) => {
 		let [rows] = await pooldb.query("select * from tbl_version");
 		res.json(rows);
 	} catch (error) {
-		return res.status(500).json({
-			message: "Something goes wrong",
-		});
+		res.status(500).send({ error });
 	}
 };
 
 export const getVersion = async (req, res) => {
 	try {
-		// req.params -> guarda todos los parametros enviados
 		let [rows] = await pooldb.query("select * from tbl_version where id = ?", [
 			req.params.id,
 		]);
@@ -25,9 +22,7 @@ export const getVersion = async (req, res) => {
 
 		res.json(rows[0]);
 	} catch (error) {
-		return res.status(500).json({
-			message: "Something goes wrong",
-		});
+		res.status(500).send({ error });
 	}
 };
 
@@ -44,15 +39,10 @@ export const deteleVersion = async (req, res) => {
 
 		res.sendStatus(204);
 	} catch (error) {
-		return res.status(500).json({
-			message: "Something goes wrong",
-		});
+		res.status(500).send({ error });
 	}
 };
-/*
-  `nombre` VARCHAR(45) NULL,
-  `fecha_lanzamiento` DATETIME NULL,
-  */
+
 export const createVersion = async (req, res) => {
 	try {
 		let {
@@ -61,11 +51,11 @@ export const createVersion = async (req, res) => {
 		} = req.body;
 
 		let [rows] = await pooldb.query(
-			"insert into tbl_version (id_proyecto,estado) values (?, ?)",
-			[
-				nombre,
-			fecha_lanzamiento
-			]
+			"insert into tbl_version set ?",
+			{
+				nombre: nombre,
+				fecha_lanzamiento: fecha_lanzamiento
+			}
 		);
 
 		console.log(rows);
@@ -77,9 +67,8 @@ export const createVersion = async (req, res) => {
 			horas_estimadas
 		});
 	} catch (error) {
-		return res.status(500).json({
-			message: "Something goes wrong",
-		});
+		const loQueEnvian = req.body;
+		res.status(500).send({ loQueEnvian, error });
 	}
 };
 
@@ -87,23 +76,7 @@ export const updateVersion = async (req, res) => {
 	try {
 		let { id } = req.params;
 
-		let {
-			id_proyecto,
-			estado,
-			descripcion,
-			horas_estimadas
-		} = req.body;
-
-		let [rows] = await pooldb.query(
-			"update tbl_version set id_proyecto = ?,estado = ?,descripcion = ?,horas_estimadas = ?  where id = ?",
-			[
-				id_proyecto,
-				estado,
-				descripcion,
-				horas_estimadas,
-				id
-			]
-		);
+		let [rows] = await pooldb.query("UPDATE tbl_version SET ? WHERE id = ?", [req.body, id]);
 
 		if (rows.affectedRows < 1)
 			return res.status(404).json({
@@ -115,8 +88,7 @@ export const updateVersion = async (req, res) => {
 		res.json(result[0]);
 
 	} catch (error) {
-		return res.status(500).json({
-			message: "Something goes wrong",
-		});
+		const loQueEnvian = req.body;
+		res.status(500).send({ loQueEnvian, error });
 	}
 };
