@@ -78,7 +78,7 @@ export const updateProject = async (req, res) => {
             "update tbl_proyecto set nombre = ?, fecha_inicio = ?, fecha_fin = ?, estado = ?, prioridad = ?, costo_acumulado = ?, horas_estimadas = ?, horas_reales = ?, where id = ?",
             [nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimadas, horas_reales]
         );*/
-        let [rows] = await pooldb.query("UPDAT tbl_proyecto SET ? WHERE id = ?", [req.body, id]);
+        let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [req.body, id]);
         if (rows.affectedRows < 1)
             return res.status(404).json({
                 message: "Project not found",
