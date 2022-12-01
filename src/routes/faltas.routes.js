@@ -16,4 +16,6 @@ router.post("/faltas", createFalta);
 
 router.delete("/faltas/:id", deleteFalta);
 
+router.get("/faltas/empleado/:legajo_empleado", getFaltaEmpleado);
+
 export default router;

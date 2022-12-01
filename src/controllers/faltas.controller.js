@@ -58,3 +58,21 @@ export const createFalta = async (req, res) => {
         res.status(500).send({loQueEnvian});
       }
 };
+
+export const getFaltasEmpleado = async (req, res) => {
+  try {
+    let { legajo_empleado } = req.params;
+    let [rows] = await pooldb.query("SELECT * FROM tbl_faltas WHERE legajo_empleado = ?", [
+      legajo_empleado,
+    ]);
+
+    if (rows.length <= 0) {
+      return res.status(404).json({ message: "Falta not found" });
+    }
+
+    res.json(rows);
+  } catch (error) {
+    const loQueEnvian = req.body;
+    res.status(500).send({ loQueEnvian });
+  }
+};
