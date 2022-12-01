@@ -58,13 +58,10 @@ export const createVersion = async (req, res) => {
 			}
 		);
 
-		console.log(rows);
 		res.send({
 			id: rows.insertId,
-			id_proyecto,
-			estado,
-			descripcion,
-			horas_estimadas
+			nombre,
+			fecha_lanzamiento
 		});
 	} catch (error) {
 		const loQueEnvian = req.body;
