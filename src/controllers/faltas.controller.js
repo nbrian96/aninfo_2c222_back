@@ -46,11 +46,11 @@ export const deleteFalta = async (req, res) => {
 
 export const createFalta = async (req, res) => {
     try {
-        const { legajo, fecha, justificante } = req.body;
+        let { legajo_empleado, fecha, justificante } = req.body;
 
-        const [rows] = await pooldb.query(
+        let [rows] = await pooldb.query(
           "INSERT INTO tbl_faltas (legajo_empleado, fecha, justificante) VALUES (?, ?, ?)",
-          [legajo, fecha, justificante]
+          [legajo_empleado, fecha, justificante]
         );
         res.status(201).json({ id: rows.insertId, legajo, fecha, justificante });
       } catch (error) {

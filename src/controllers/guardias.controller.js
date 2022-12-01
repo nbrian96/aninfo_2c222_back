@@ -2,9 +2,9 @@ import { pooldb } from "../db.js";
 
 export const createGuardia = async (req, res) => {
     try {
-        const { legajo_empleado, fecha_inicio, fecha_fin } = req.body;
+        let { legajo_empleado, fecha_inicio, fecha_fin } = req.body;
 
-        const [rows] = await pooldb.query(
+        let [rows] = await pooldb.query(
             "INSERT INTO tbl_guardia (legajo_empleado, fecha_inicio, fecha_fin) VALUES (?, ?, ?)",
             [legajo_empleado, fecha_inicio, fecha_fin]
         );

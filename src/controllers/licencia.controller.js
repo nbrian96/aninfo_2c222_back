@@ -46,9 +46,9 @@ export const deleteLicencia = async (req, res) => {
 
 export const getLicenciaEmpleado = async (req, res) => {
   try {
-    const { legajo } = req.params;
+    const { legajo_empleado } = req.params;
     const [rows] = await pooldb.query("SELECT * FROM tbl_licencia WHERE legajo_empleado = ?", [
-      legajo,
+      legajo_empleado,
     ]);
 
     if (rows.length <= 0) {
@@ -83,13 +83,13 @@ export const getLicenciaEmpleado = async (req, res) => {
 
 export const createLicencia = async (req, res) => {
     try {
-        const { legajo, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo } = req.body;
+      let { legajo_empleado, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo } = req.body;
 
-        const [rows] = await pooldb.query(
+        let [rows] = await pooldb.query(
           "INSERT INTO tbl_horas (legajo_empleado, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo) VALUES (?, ?, ?, ?, ?, ?)",
-          [legajo, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo]
+          [legajo_empleado, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo]
         );
-        res.status(201).json({ id: rows.insertId, legajo, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo });
+        res.json({ id: rows.insertId, legajo, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo });
       } catch (error) {
         const loQueEnvian = req.body;
         res.status(500).send({loQueEnvian});
