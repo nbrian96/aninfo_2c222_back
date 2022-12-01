@@ -2,16 +2,16 @@ import { pooldb } from "../db.js";
 
 export const getProjects = async (req, res) => {
     try {
-        const [result] = await pooldb.query('SELECT * FROM tbl_proyecto')
+        const [result] = await pooldb.query('SELECT * FROM tbl_proyecto');
         return res.status(200).json(result);
     } catch (error) {
         return res.status(500).json({ message: "Something goes wrong" });
     }
-}
+};
 
 export const createProject = async (req, res) => {
     try {
-        const { nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimada, horas_reales } = req.body
+        const { nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimada, horas_reales } = req.body;
         const [result] = await pooldb.query('INSERT INTO tbl_proyecto SET ?', {
             nombre: nombre,
             fecha_inicio: fecha_inicio,
@@ -20,14 +20,14 @@ export const createProject = async (req, res) => {
             prioridad: prioridad,
             costo_acumulado: costo_acumulado,
             horas_estimada: horas_estimada,
-            horas_reales: horas_reales,
+            horas_reales: horas_reales
         });
 
         return res.status(200).json({ nombre, estado, id: result.insertId });
     } catch (error) {
         return res.status(500).json({ message: "Something goes wrong" });
     }
-}
+};
 
 export const getByProjectId = async (req, res) => {
     try {
@@ -72,7 +72,7 @@ export const updateProject = async (req, res) => {
         prioridad,
         costo_acumulado,
         horas_estimadas,
-        horas_reales,
+        horas_reales
     } = req.body;
     let [rows] = await pooldb.query(
         "update tbl_proyecto set nombre = ?, fecha_inicio = ?, fecha_fin = ?, estado = ?, prioridad = ?, costo_acumulado = ?, horas_estimadas = ?, horas_reales = ?, where id = ?",

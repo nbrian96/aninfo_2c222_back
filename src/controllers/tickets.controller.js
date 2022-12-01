@@ -82,12 +82,13 @@ export const createTicket = async (req, res) => {
     });
   } catch (error) {
     const loQueEnvian = req.body;
+    res.status(500).send({loQueEnvian});
+
     /*
     return res.status(500).json({
       message: "Something goes wrong",
     });
     */
-   res.status(500).send({loQueEnvian});
   }
 };
 

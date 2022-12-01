@@ -20,29 +20,3 @@ router.put('/proyectos/:id', updateProject);
 router.delete('/proyectos/:id', deleteProject);
 
 export default router;
-
-/*
-router.get('/editProject/:id', (req,res) => {
-	res.send(req.params);
-})
-
-router.get('/eliminarProject/:id', (req,res) => {
-	res.send(req.params);
-})
-
-router.get('/editTarea/:id', (req,res) => {
-	res.send(req.params);
-})
-
-router.get('/eliminarTarea/:id', (req,res) => {
-	res.send(req.params);
-})
-
-router.get('/projectView/:id', (req,res) => {
-	res.send(req.params);
-})
-
-router.get('/tareaView/:id', (req,res) => {
-	res.send(req.params);
-})
-*/
