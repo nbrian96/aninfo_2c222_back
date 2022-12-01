@@ -93,6 +93,6 @@ export const createHora = async (req, res) => {
         res.json({ id: rows.insertId, legajo, id_tarea, cant, fecha, estado, extra });
       } catch (error) {
         const loQueEnvian = req.body;
-        res.status(500).send({loQueEnvian});
+        res.status(500).send({loQueEnvian, error});
       }
 };
