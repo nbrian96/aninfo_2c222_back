@@ -26,6 +26,23 @@ export const getHora = async (req, res) => {
     }
 };
 
+export const getHoraEmpleado = async (req, res) => {
+  try {
+    const { legajo } = req.params;
+    const [rows] = await pooldb.query("SELECT * FROM tbl_horas WHERE legajo_empleado = ?", [
+      legajo,
+    ]);
+
+    if (rows.length <= 0) {
+      return res.status(404).json({ message: "Hora not found" });
+    }
+
+    res.json(rows[0]);
+  } catch (error) {
+    return res.status(500).json({ message: "Something goes wrong" });
+  }
+};
+
 export const deleteHora = async (req, res) => {
     try {
       const { id } = req.params.id;

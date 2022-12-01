@@ -5,6 +5,7 @@ import {
 	deleteHora,
 	createHora,
 	updateHoras,
+	getHoraEmpleado,
 } from "../controllers/horas.controller.js";
 
 const router = Router();
@@ -18,5 +19,7 @@ router.post("/horas", createHora);
 router.put("/horas/:id", updateHoras);
 
 router.delete("/horas/:id", deleteHora);
+
+router.get("/horas/empleado/:legajo", getHoraEmpleado);
 
 export default router;
