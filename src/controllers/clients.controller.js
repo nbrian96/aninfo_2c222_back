@@ -96,7 +96,7 @@ export const updateClient = async (req, res) => {
 
 export const deleteClient = async (req, res) => {
     try {
-      let [rows] = await pooldb.query("delete from tbl_client where id = ?", [
+      let [rows] = await pooldb.query("delete from tbl_cliente where id = ?", [
         req.params.id,
       ]);
   
@@ -108,7 +108,7 @@ export const deleteClient = async (req, res) => {
       res.sendStatus(204);
     } catch (error) {
       return res.status(500).json({
-        message: "Something goes wrong",
+        message: "Something goes wrong", error
       });
     }
   };
