@@ -23,9 +23,9 @@ export const createClient = async (req, res) => {
         nombre
       });
     } catch (error) {
-      const loQueEnvian = req.body;
-      res.status(500).send({loQueEnvian});
-  
+        const loQueEnvian = req.body;
+        res.status(500).send({loQueEnvian, error});
+
       /*
       return res.status(500).json({
         message: "Something goes wrong",
