@@ -18,8 +18,8 @@ router.post("/guardias", createGuardia);
 
 router.delete("/guardias/:id", deleteGuardia);
 
-router.get("/guardias/empleado/:legajo", getGuardiaEmpleado);
+router.get("/guardias/empleado/:legajo_empleado", getGuardiaEmpleado);
 
-router.get("/guardias/cant/empleado/:legajo", getCantGuardiasEmpleado);
+router.get("/guardias/cant/empleado/:legajo_empleado", getCantGuardiasEmpleado);
 
 export default router;
