@@ -90,7 +90,7 @@ export const createHora = async (req, res) => {
           "INSERT INTO tbl_horas (legajo_empleado, id_tarea, cant_horas, fecha, estado, extra) VALUES (?, ?, ?, ?, ?, ?)",
           [legajo, id_tarea, cant, fecha, estado ,extra]
         );
-        res.send({ id: rows.insertId, legajo, id_tarea, cant, fecha, estado, extra });
+        res.json({ id: rows.insertId, legajo, id_tarea, cant, fecha, estado, extra });
       } catch (error) {
         const loQueEnvian = req.body;
         res.status(500).send({loQueEnvian});
