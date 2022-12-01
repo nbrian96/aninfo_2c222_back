@@ -31,8 +31,8 @@ export const createProject = async (req, res) => {
 
 export const getByProjectId = async (req, res) => {
     try {
-        let [rows] = await pooldb.query("Select * from tbl_proyecto where id = ?", [req.params.id]);
-        if (rows.includes(undefined))
+        let [rows] = await pooldb.query("SELECT * from tbl_proyecto where id = ?", [req.params.id]);
+        if (rows[0].lenght == 0)
             return res.status(404).json({
                 message: "Project not found",
             });
