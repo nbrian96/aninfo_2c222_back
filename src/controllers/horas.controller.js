@@ -5,7 +5,8 @@ export const getHoras = async (req, res) => {
       const [rows] = await pooldb.query("SELECT * FROM tbl_horas");
       res.json(rows);
     } catch (error) {
-      return res.status(500).json({ message: "Something goes wrong" });
+      const loQueEnvian = req.body;
+      res.status(500).send({loQueEnvian});
     }
 };
 
@@ -22,7 +23,8 @@ export const getHora = async (req, res) => {
   
       res.json(rows[0]);
     } catch (error) {
-      return res.status(500).json({ message: "Something goes wrong" });
+      const loQueEnvian = req.body;
+      res.status(500).send({loQueEnvian});
     }
 };
 
@@ -39,7 +41,8 @@ export const getHoraEmpleado = async (req, res) => {
 
     res.json(rows[0]);
   } catch (error) {
-    return res.status(500).json({ message: "Something goes wrong" });
+    const loQueEnvian = req.body;
+    res.status(500).send({loQueEnvian});
   }
 };
 
@@ -54,7 +57,8 @@ export const deleteHora = async (req, res) => {
   
       res.sendStatus(204);
     } catch (error) {
-      return res.status(500).json({ message: "Something goes wrong" });
+      const loQueEnvian = req.body;
+      res.status(500).send({loQueEnvian});
     }
 };
 
@@ -87,6 +91,7 @@ export const createHora = async (req, res) => {
         );
         res.status(201).json({ id: rows.insertId, legajo, id_tarea, cant, fecha, estado: "abierto", extra });
       } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        const loQueEnvian = req.body;
+        res.status(500).send({loQueEnvian});
       }
 };

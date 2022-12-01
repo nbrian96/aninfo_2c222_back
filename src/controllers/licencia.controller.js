@@ -5,7 +5,8 @@ export const getLicencias = async (req, res) => {
       const [rows] = await pooldb.query("SELECT * FROM tbl_licencia");
       res.json(rows);
     } catch (error) {
-      return res.status(500).json({ message: "Something goes wrong" });
+      const loQueEnvian = req.body;
+      res.status(500).send({loQueEnvian});
     }
 };
 
@@ -22,7 +23,8 @@ export const getLicencia = async (req, res) => {
   
       res.json(rows[0]);
     } catch (error) {
-      return res.status(500).json({ message: "Something goes wrong" });
+      const loQueEnvian = req.body;
+      res.status(500).send({loQueEnvian});
     }
 };
 
@@ -37,7 +39,8 @@ export const deleteLicencia = async (req, res) => {
   
       res.sendStatus(204);
     } catch (error) {
-      return res.status(500).json({ message: "Something goes wrong" });
+      const loQueEnvian = req.body;
+      res.status(500).send({loQueEnvian});
     }
 };
 
@@ -54,7 +57,8 @@ export const getLicenciaEmpleado = async (req, res) => {
 
     res.json(rows[0]);
   } catch (error) {
-    return res.status(500).json({ message: "Something goes wrong" });
+    const loQueEnvian = req.body;
+    res.status(500).send({loQueEnvian});
   }
 };
 
@@ -87,6 +91,7 @@ export const createLicencia = async (req, res) => {
         );
         res.status(201).json({ id: rows.insertId, legajo, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo });
       } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        const loQueEnvian = req.body;
+        res.status(500).send({loQueEnvian});
       }
 };

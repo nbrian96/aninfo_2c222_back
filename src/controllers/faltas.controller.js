@@ -5,7 +5,8 @@ export const getFaltas = async (req, res) => {
       const [rows] = await pooldb.query("SELECT * FROM tbl_faltas");
       res.json(rows);
     } catch (error) {
-      return res.status(500).json({ message: "Something goes wrong" });
+      const loQueEnvian = req.body;
+      res.status(500).send({loQueEnvian});
     }
 };
 
@@ -22,7 +23,8 @@ export const getFalta = async (req, res) => {
   
       res.json(rows[0]);
     } catch (error) {
-      return res.status(500).json({ message: "Something goes wrong" });
+      const loQueEnvian = req.body;
+      res.status(500).send({loQueEnvian});
     }
 };
 
@@ -37,7 +39,8 @@ export const deleteFalta = async (req, res) => {
   
       res.sendStatus(204);
     } catch (error) {
-      return res.status(500).json({ message: "Something goes wrong" });
+      const loQueEnvian = req.body;
+      res.status(500).send({loQueEnvian});
     }
 };
 
@@ -51,6 +54,7 @@ export const createFalta = async (req, res) => {
         );
         res.status(201).json({ id: rows.insertId, legajo, fecha, justificante });
       } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        const loQueEnvian = req.body;
+        res.status(500).send({loQueEnvian});
       }
 };
