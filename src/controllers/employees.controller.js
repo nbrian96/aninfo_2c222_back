@@ -4,7 +4,7 @@ export const createEmployee = async (req, res) => {
     try {
         const { id_gerente, nombre, apellido, cargo, antiguedad } = req.body;
 
-        const [rows] = await pool.query(
+        const [rows] = await pooldb.query(
             "INSERT INTO tbl_empleado (id_gerente, nombre, apellido, cargo, antiguedad) VALUES (?, ?, ?, ?, ?)",
             [id_gerente, nombre, apellido, cargo, antiguedad]
         );
@@ -17,7 +17,7 @@ export const createEmployee = async (req, res) => {
 export const getEmployee = async (req, res) => {
     try {
         const { legajo } = req.params;
-        const [rows] = await pool.query("SELECT * FROM tbl_empleado WHERE legajo = ?", [
+        const [rows] = await pooldb.query("SELECT * FROM tbl_empleado WHERE legajo = ?", [
             legajo,
         ]);
 
