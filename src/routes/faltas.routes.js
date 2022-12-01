@@ -4,6 +4,7 @@ import {
 	getFalta,
     deleteFalta,
     createFalta,
+    getFaltaEmpleado,
 } from "../controllers/faltas.controller.js";
 
 const router = Router();
