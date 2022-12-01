@@ -63,8 +63,8 @@ export const getCantGuardiasEmpleado = async (req, res) => {
 
 export const getGuardiaEmpleado = async (req, res) => {
     try {
-        const { legajo_empleado } = req.params;
-        const [rows] = await pooldb.query("SELECT * FROM tbl_guardia WHERE legajo_empleado = ?", [
+        let { legajo_empleado } = req.params;
+        let [rows] = await pooldb.query("SELECT * FROM tbl_guardia WHERE legajo_empleado = ?", [
             legajo_empleado,
         ]);
 
@@ -72,7 +72,7 @@ export const getGuardiaEmpleado = async (req, res) => {
             return res.status(404).json({ message: "Guardia not found" });
         }
 
-        res.json(rows[0]);
+        res.json(rows);
     } catch (error) {
         const loQueEnvian = req.body;
         res.status(500).send({loQueEnvian});
