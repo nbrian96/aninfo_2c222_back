@@ -19,4 +19,6 @@ router.delete("/guardias/:id", deleteGuardia);
 
 router.get("/guardias/empleado/:legajo", getGuardiaEmpleado);
 
+router.get("/guardias/empleado/:legajo", getCantGuardiasEmpleado);
+
 export default router;
