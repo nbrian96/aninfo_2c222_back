@@ -108,7 +108,7 @@ export const deleteClient = async (req, res) => {
       res.sendStatus(204);
     } catch (error) {
       return res.status(500).json({
-        message: "Something goes wrong",
+        message: "Something goes wrong", error
       });
     }
   };
