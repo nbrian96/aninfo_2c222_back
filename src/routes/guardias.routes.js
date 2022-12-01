@@ -5,6 +5,7 @@ import {
     deleteGuardia,
     createGuardia,
     getGuardiaEmpleado,
+    getCantGuardiasEmpleado,
 } from "../controllers/guardias.controller.js";
 
 const router = Router();
