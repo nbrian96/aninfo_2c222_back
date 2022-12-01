@@ -11,16 +11,16 @@ export const getProjects = async (req, res) => {
 
 export const createProject = async (req, res) => {
     try {
-        const { nombre, estado, fecha_inicio, fecha_fin, prioridad, costo_acumulado, horas_estimada, horas_reales } = req.body
+        const { nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimada, horas_reales } = req.body
         const [result] = await pooldb.query('INSERT INTO tbl_proyecto SET ?', {
-            nombre,
-            fecha_inicio,
-            fecha_fin,
-            estado,
-            prioridad,
-            costo_acumulado,
-            horas_estimada,
-            horas_reales,
+            nombre: nombre,
+            fecha_inicio: fecha_inicio,
+            fecha_fin: fecha_fin,
+            estado: estado,
+            prioridad: prioridad,
+            costo_acumulado: costo_acumulado,
+            horas_estimada: horas_estimada,
+            horas_reales: horas_reales,
         });
 
         return res.status(200).json({ nombre, estado, id: result.insertId });
