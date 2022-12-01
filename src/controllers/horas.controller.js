@@ -46,6 +46,42 @@ export const getHoraEmpleado = async (req, res) => {
   }
 };
 
+export const getHorasTotalesEmpleado = async (req, res) => {
+  try {
+    let { legajo_empleado } = req.params;
+    let [rows] = await pooldb.query("SELECT SUM(cant_horas) as horas_totales FROM tbl_horas WHERE legajo_empleado = ?", [
+      legajo_empleado,
+    ]);
+
+    if (rows.length <= 0) {
+      return res.status(404).json({ message: "Horas not found" });
+    }
+
+    res.json(rows);
+  } catch (error) {
+    const loQueEnvian = req.body;
+    res.status(500).send({ loQueEnvian });
+  }
+};
+
+export const getHorasExtraTotalesEmpleado = async (req, res) => {
+  try {
+    let { legajo_empleado } = req.params;
+    let [rows] = await pooldb.query("SELECT SUM(extra) as horas_extra FROM tbl_horas WHERE legajo_empleado = ?", [
+      legajo_empleado,
+    ]);
+
+    if (rows.length <= 0) {
+      return res.status(404).json({ message: "Horas not found" });
+    }
+
+    res.json(rows);
+  } catch (error) {
+    const loQueEnvian = req.body;
+    res.status(500).send({ loQueEnvian });
+  }
+};
+
 export const deleteHora = async (req, res) => {
   try {
     const { id } = req.params.id;
