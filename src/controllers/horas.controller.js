@@ -83,9 +83,9 @@ export const updateHoras = async (req, res) => {
 
 export const createHora = async (req, res) => {
     try {
-        const { legajo, id_tarea, cant, fecha, estado,  extra } = req.body;
+        let { legajo, id_tarea, cant, fecha, estado,  extra } = req.body;
 
-        const [rows] = await pooldb.query(
+        let [rows] = await pooldb.query(
           "INSERT INTO tbl_horas (legajo_empleado, id_tarea, cant_horas, fecha, estado, extra) VALUES (?, ?, ?, ?, ?, ?)",
           [legajo, id_tarea, cant, fecha, estado ,extra]
         );
