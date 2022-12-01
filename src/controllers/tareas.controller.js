@@ -127,3 +127,6 @@ export const updateTarea = async (req, res) => {
 	}
 };
 
+export const getTareaEmpleado = async (req, res) => {
+
+}

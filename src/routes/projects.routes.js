@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+/*
 router.get('/editProject/:id', (req,res) => {
 	res.send(req.params);
 })
@@ -23,5 +24,5 @@ router.get('/projectView/:id', (req,res) => {
 router.get('/tareaView/:id', (req,res) => {
 	res.send(req.params);
 })
-
+*/
 export default router;
