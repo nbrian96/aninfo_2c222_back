@@ -5,7 +5,7 @@ import {
 	deleteHora,
 	createHora,
 	updateHoras,
-	getHoraEmpleado,
+	getHoraEmpleado, getHorasExtraTotalesEmpleado,
 } from "../controllers/horas.controller.js";
 
 const router = Router();
@@ -21,5 +21,9 @@ router.put("/horas/:id", updateHoras);
 router.delete("/horas/:id", deleteHora);
 
 router.get("/horas/empleado/:legajo_empleado", getHoraEmpleado);
+
+router.get("/horas/empleado/:legajo_empleado", getHorasTotalesEmpleado);
+
+router.get("/horas/empleado/:legajo_empleado", getHorasExtraTotalesEmpleado);
 
 export default router;
