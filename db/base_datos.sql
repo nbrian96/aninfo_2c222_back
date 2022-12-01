@@ -82,32 +82,23 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `psa`.`tbl_ticket`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `psa`.`tbl_ticket` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `id_tarea` INT NOT NULL,
-  `id_producto` INT NOT NULL,
-  `nombre` VARCHAR(45) NULL,
-  `descripcion` MEDIUMTEXT NULL,
-  `severidad` VARCHAR(45) NULL,
-  `estado` VARCHAR(45) NULL,
-  `fecha_emision` DATETIME NULL,
-  `fecha_resolucion` DATETIME NULL,
-  `tbl_ticketcol` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `codigo_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `id_idx` (`id_tarea` ASC) INVISIBLE,
-  INDEX `id_producto_idx` (`id_producto` ASC) VISIBLE,
-  CONSTRAINT `id_tarea`
-    FOREIGN KEY (`id_tarea`)
-    REFERENCES `psa`.`tbl_tarea` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `id_productot`
-    FOREIGN KEY (`id_producto`)
-    REFERENCES `psa`.`tbl_producto` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+DROP TABLE IF EXISTS `tbl_ticket`;
+CREATE TABLE `tbl_ticket` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_responsable` INT UNSIGNED NOT NULL,
+  `severidad` VARCHAR(50) NOT NULL,
+  `estado` VARCHAR(50) NOT NULL,
+  `titulo` VARCHAR(45) NOT NULL,
+  `descripcion` MEDIUMTEXT NOT NULL,
+  `id_cliente` INT UNSIGNED NOT NULL,
+  `medio_contacto` VARCHAR(50) NOT NULL,
+  `dato_contacto` VARCHAR(50) NOT NULL,
+  `id_producto` INT UNSIGNED NULL DEFAULT NULL,
+  `fecha_emision` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_resolucion` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------

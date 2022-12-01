@@ -17,10 +17,11 @@ export const createProject = async (req, res) => {
             fecha_inicio: fecha_inicio,
             fecha_fin: fecha_fin,
             estado: estado,
-            prioridad: prioridad,
+            /*prioridad: prioridad,
             costo_acumulado: costo_acumulado,
             horas_estimada: horas_estimada,
             horas_reales: horas_reales
+            */
         });
 
         return res.status(200).json({ nombre, estado, id: result.insertId });
