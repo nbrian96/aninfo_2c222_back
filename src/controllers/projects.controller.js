@@ -14,15 +14,15 @@ export const createProject = async (req, res) => {
         const { nombre, estado, fecha_inicio, fecha_fin, prioridad, costo_acumulado, horas_estimada, horas_reales } = req.body
         const [result] = await pooldb.query('INSERT INTO tbl_proyecto SET ?', {
             nombre,
-            estado,
             fecha_inicio,
             fecha_fin,
+            estado,
             prioridad,
             costo_acumulado,
             horas_estimada,
             horas_reales,
-
         });
+
         return res.status(200).json({ nombre, estado, id: result.insertId });
     } catch (error) {
         return res.status(500).json({ message: "Something goes wrong" });
