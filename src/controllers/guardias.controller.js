@@ -10,7 +10,8 @@ export const createGuardia = async (req, res) => {
         );
         res.status(201).json({ id: rows.insertId, legajo_empleado, fecha_inicio, fecha_fin });
     } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        const loQueEnvian = req.body;
+        res.status(500).send({loQueEnvian});
     }
 };
 
@@ -19,7 +20,8 @@ export const getGuardias = async (req, res) => {
         const [rows] = await pooldb.query("SELECT * FROM tbl_guardia");
         res.json(rows);
     } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        const loQueEnvian = req.body;
+        res.status(500).send({loQueEnvian});
     }
 };
 
@@ -36,7 +38,8 @@ export const getGuardia = async (req, res) => {
 
         res.json(rows[0]);
     } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        const loQueEnvian = req.body;
+        res.status(500).send({loQueEnvian});
     }
 };
 
@@ -53,7 +56,8 @@ export const getGuardiaEmpleado = async (req, res) => {
 
         res.json(rows[0]);
     } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        const loQueEnvian = req.body;
+        res.status(500).send({loQueEnvian});
     }
 };
 
@@ -68,6 +72,7 @@ export const deleteGuardia = async (req, res) => {
 
         res.sendStatus(204);
     } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        const loQueEnvian = req.body;
+        res.status(500).send({loQueEnvian});
     }
 };
