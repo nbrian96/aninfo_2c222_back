@@ -57,3 +57,28 @@ export const deleteProject = async (req, res) => {
         });
     }
 };
+
+export const updateProject = async (req, res) => {
+    let { id } = req.params;
+    let {
+        nombre,
+        fecha_inicio,
+        fecha_fin,
+        estado,
+        prioridad,
+        horas_estimadas,
+        horas_reales
+    } = req.body;
+    let [rows] = await pooldb.query(
+        "update tbl_proyecto set nombre = ?, fecha_inicio = ?, fecha_fin = ?, estado = ?, prioridad = ?, horas_estimadas = ?, horas_reales = ?, where id = ?",
+        [nombre, fecha_inicio, fecha_fin, estado, prioridad, horas_estimadas, horas_reales]
+    );
+    if (rows.affectedRows < 1)
+        return res.status(404).json({
+            message: "Project not found",
+        });
+    let [result] = await pooldb.query("select * from tbl_proyecto where id = ?", [id]);
+
+    res.json(result[0]);
+
+};
