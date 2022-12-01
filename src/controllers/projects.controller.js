@@ -11,7 +11,7 @@ export const getProjects = async (req, res) => {
 
 export const createProject = async (req, res) => {
     try {
-        const { nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimada, horas_reales } = req.body;
+        const { nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimadas, horas_reales } = req.body;
         const [result] = await pooldb.query('INSERT INTO tbl_proyecto SET ?', {
             nombre: nombre,
             fecha_inicio: fecha_inicio,
@@ -19,11 +19,11 @@ export const createProject = async (req, res) => {
             estado: estado,
             prioridad: prioridad,
             costo_acumulado: costo_acumulado,
-            horas_estimada: horas_estimada,
+            horas_estimadas: horas_estimadas,
             horas_reales: horas_reales
         });
 
-        return res.status(200).json({ nombre, estado, id: result.insertId });
+        return res.status(200).json({ nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimadas, horas_reales, id: result.insertId });
     } catch (error) {
         return res.status(500).json({ message: "Something goes wrong" });
     }
@@ -31,7 +31,7 @@ export const createProject = async (req, res) => {
 
 export const getByProjectId = async (req, res) => {
     try {
-        let [rows] = await pooldb.query("Select * from tbl_proyecto where id = ?", [req.params.id,]);
+        let [rows] = await pooldb.query("Select * from tbl_proyecto where id = ?", [req.params.id]);
         if (rows.lenght <= 0)
             return res.status(404).json({
                 message: "Project not found",
@@ -46,15 +46,13 @@ export const getByProjectId = async (req, res) => {
 
 export const deleteProject = async (req, res) => {
     try {
-        let [rows] = await pooldb.query("delete from tbl_project where id = ?", [
-            req.params.id,
-        ]);
-        if (rows.affectedRows < 1)
+        let [rows] = await pooldb.query("DELETE FROM tbl_proyecto WHERE id = ?", [req.params.id]);
+        if (rows.affectedRows <= 0 )
             return res.status(404).json({
                 message: "Project not found",
             });
 
-        res.status(200).json(rows);
+        res.status(204).json();
     } catch (error) {
         return res.status(500).json({
             message: "Something goes wrong",
