@@ -44,7 +44,7 @@ export const getProject = async (req, res) => {
     }
 };
 
-export const getByProjectName = async (req, res) => {
+/*export const getByProjectName = async (req, res) => {
     try {
         const [result] = await pooldb.query('SELECT * FROM tbl_proyecto WHERE nombre = ?', [req.params.nombre]);
         if (result.lenght <= 0){
@@ -56,7 +56,7 @@ export const getByProjectName = async (req, res) => {
     } catch (error) {
         res.status(500).send(error);
     }
-}
+}*/
 
 export const deleteProject = async (req, res) => {
     try {

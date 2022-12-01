@@ -5,14 +5,14 @@ import {
 	createProject,
 	deleteProject,
 	updateProject,
-	getByProjectName,
+	//getByProjectName,
 } from "../controllers/projects.controller.js";
 
 const router = Router();
 
 router.get('/proyectos/:id', getProject);
 
-router.get('/proyectos/:nombre', getByProjectName);
+//router.get('/proyectos/:nombre', getByProjectName);
 
 router.get('/proyectos', getProjects);
 
