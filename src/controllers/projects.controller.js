@@ -1,6 +1,6 @@
 import { pooldb } from "../db.js";
 
-const getProjects = async (req, res) => {
+export const getProjects = async (req, res) => {
     try {
         const [result] = await pooldb.query('SELECT * FROM tbl_proyecto')
         return res.status(200).json(result);
@@ -9,8 +9,8 @@ const getProjects = async (req, res) => {
     }
 }
 
-const createProject = async (req, res) => {
-    try{
+export const createProject = async (req, res) => {
+    try {
         const { nombre, estado, fecha_inicio, fecha_fin } = req.body
         const [result] = await pooldb.query('INSERT INTO tbl_proyecto SET ?', {
             nombre: nombre,
@@ -18,8 +18,8 @@ const createProject = async (req, res) => {
             fecha_inicio: fecha_inicio,
             fecha_fin: fecha_fin,
         });
-    return res.status(200).json({ nombre, estado, id: result.insertId });
-    } catch (error){
+        return res.status(200).json({ nombre, estado, id: result.insertId });
+    } catch (error) {
         return res.status(500).json({ message: "Something goes wrong" });
     }
 }
@@ -32,6 +32,25 @@ export const getByProjectId = async (req, res) => {
                 message: "Project not found",
             });
         res.status(200).json(rows[0]);
+    } catch (error) {
+        return res.status(500).json({
+            message: "Something goes wrong",
+        });
+    }
+};
+
+export const deleteProject = async (req, res) => {
+    try {
+        let [rows] = await pooldb.query("delete from tbl_project where id = ?", [
+            req.params.id,
+        ]);
+
+        if (rows.affectedRows < 1)
+            return res.status(404).json({
+                message: "Project not found",
+            });
+
+        res.status(200).json(rows);
     } catch (error) {
         return res.status(500).json({
             message: "Something goes wrong",

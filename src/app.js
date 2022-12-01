@@ -7,7 +7,7 @@ import guardiasRoutes from "./routes/guardias.routes.js";
 import licenciaRoutes from "./routes/licencia.routes.js";
 import horasRoutes from "./routes/horas.routes.js";
 import tareasRoutes from "./routes/tareas.routes.js";
-//import proyectsRoutes from "./routes/proyects.routes.js";
+import projectsRoutes from "./routes/projects.routes.js";
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.use("/api", faltasRoutes);
 app.use("/api", horasRoutes);
 app.use("/api", tareasRoutes);
 app.use("/api", licenciaRoutes);
-//app.use("/api", proyectsRoutes);
+app.use("/api", projectsRoutes);
 
 app.use((req, res, next) => {
     res.status(404).json({

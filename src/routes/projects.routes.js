@@ -1,4 +1,25 @@
 import { Router } from "express";
+import {
+	getProjects,
+	getByProjectId,
+	createProject,
+	deleteProject,
+	//updateProject
+} from "../controllers/projects.controller.js";
+
+const router = Router();
+
+router.get('/proyectos/:id', getByProjectId);
+
+router.get('/proyectos', getProjects);
+
+router.post('/proyectos', createProject);
+
+//router.put('/proyectos/:id', updateProject);
+
+router.delete('/proyectos/:id', deleteProject);
+
+export default router;
 
 /*
 router.get('/editProject/:id', (req,res) => {
@@ -25,18 +46,3 @@ router.get('/tareaView/:id', (req,res) => {
 	res.send(req.params);
 })
 */
-
-const router = Router();
-
-router.get('/proyecto/:id', getByProjectId);
-
-router.get('/proyecto', getProjects);
-
-router.post('/proyecto', createProject);
-
-router.put('/proyecto/:id', updateProject);
-
-router.delete('/proyecto/:id', deleteProject);
-
-
-export default router;
