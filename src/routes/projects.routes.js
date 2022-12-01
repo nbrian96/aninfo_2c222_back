@@ -25,4 +25,18 @@ router.get('/tareaView/:id', (req,res) => {
 	res.send(req.params);
 })
 */
+
+const router = Router();
+
+router.get('/proyecto/:id', getByProjectId);
+
+router.get('/proyecto', getProjects);
+
+router.post('/proyecto', createProject);
+
+router.put('/proyecto/:id', updateProject);
+
+router.delete('/proyecto/:id', deleteProject);
+
+
 export default router;
