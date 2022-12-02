@@ -9,8 +9,8 @@ import horasRoutes from "./routes/horas.routes.js";
 import tareasRoutes from "./routes/tareas.routes.js";
 import projectsRoutes from "./routes/projects.routes.js";
 import clientesRoutes from "./routes/clientes.routes.js";
-
 import versionRoutes from "./routes/versions.routes.js";
+import productoRoutes from "./routes/producto.routes.js";
 
 const app = express();
 
@@ -25,9 +25,8 @@ app.use("/api", tareasRoutes);
 app.use("/api", licenciaRoutes);
 app.use("/api", projectsRoutes);
 app.use("/api", clientesRoutes);
-
-
 app.use("/api", versionRoutes);
+app.use("/api", productoRoutes);
 
 app.use((req, res, next) => {
     res.status(404).json({
