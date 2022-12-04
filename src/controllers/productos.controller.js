@@ -49,15 +49,15 @@ export const createProducto = async (req, res) => {
         let {
             id_version,
             nombre,
-            fecha_lanzamiento
+            fecha_lanzamiento,activo
         } = req.body;
 
         let [rows] = await pooldb.query(
-            "insert into tbl_producto (id_version,nombre,fecha_lanzamiento) values (?, ?, ?)",
+            "insert into tbl_producto (id_version,nombre,fecha_lanzamiento, activo) values (?, ?, ?,?)",
             [
                 id_version,
                 nombre,
-                fecha_lanzamiento
+                fecha_lanzamiento,activo 
             ]
         );
 
@@ -79,15 +79,16 @@ export const updateProducto = async (req, res) => {
         let {
             id_version,
             nombre,
-            fecha_lanzamiento
+            fecha_lanzamiento,activo
         } = req.body;
 
         let [rows] = await pooldb.query(
-            "update tbl_producto set id_version = ?,nombre = ?,fecha_lanzamiento = ? where id = ?",
+            "update tbl_producto set id_version = ?,nombre = ?,fecha_lanzamiento = ?, activo = ? where id = ?",
             [
                 id_version,
                 nombre,
                 fecha_lanzamiento,
+                activo,
                 id
             ]
         );
