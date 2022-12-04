@@ -28,12 +28,12 @@ export const createProject = async (req, res) => {
         return res.status(500).json({ message: "Something goes wrong" });
     }
 };
-
+//FIX: Si el proyecto no existe devuelve 200 en vez de 404
 export const getProject = async (req, res) => {
     try {
         let [rows] = await pooldb.query("SELECT * from tbl_proyecto where id = ?", [req.params.id]);
-        //Bug: si el proyecto no existe no devuelve el 404
-        if (rows.lenght <= 0){
+        console.log("Proyectos con el id pedida: " + rows.length);
+        if (rows.lenght < 1){
             return res.status(404).json({
                 message: "Project not found",
             });
@@ -44,16 +44,18 @@ export const getProject = async (req, res) => {
     }
 };
 
+//FIX: Si el proyecto tiene tareas dentro tira status 500 en vez de 400
 export const deleteProject = async (req, res) => {
     try {
 
         let [tareas_pendientes] = await pooldb.query("SELECT * FROM tbl_tarea WHERE id_proyecto = ? ", [req.params.id]);
+        console.log("Cantidad de tareas del proyecto: " + tareas_pendientes.length);
         if(tareas_pendientes.lenght > 0){
             return res.status(400).json({
                 message: "El proyecto aun tiene tareas sin terminar"
             })
         }
-        
+
         let [rows] = await pooldb.query("DELETE FROM tbl_proyecto WHERE id = ?", [req.params.id]);
         if (rows.length < 1)
             return res.status(404).json({
