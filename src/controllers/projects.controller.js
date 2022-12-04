@@ -31,15 +31,13 @@ export const createProject = async (req, res) => {
 //FIX: Si el proyecto no existe devuelve 200 en vez de 404
 export const getProject = async (req, res) => {
     try {
-        let [rows] = await pooldb.query("SELECT * from tbl_proyecto where id = ?", [req.params.id]);
-        console.log("Proyectos con el id pedida: " + rows.length);
-        console.log(row.lenght == 0);
-        if (rows.lenght == 0) {
-            console.log("No hay un proyecto con esa id")
+        let [rows] = await pooldb.query("select * from tbl_proyecto where id = ?", [req.params.id]);
+        
+        if (rows.lenght <= 0) 
             return res.status(404).json({
                 message: "Project not found",
-            })
-        }
+            });
+
         res.status(200).json(rows[0]);
     } catch (error) {
         return res.status(500).send(error);
@@ -51,21 +49,18 @@ export const getProject = async (req, res) => {
 export const deleteProject = async (req, res) => {
     try {
 
-        let [tareas_pendientes] = await pooldb.query("SELECT * FROM tbl_tarea WHERE id_proyecto = ? ", [req.params.id]);
-        console.log("Cantidad de tareas del proyecto: " + tareas_pendientes.length);
-        console.log(tareas_pendientes.lenght == 0);
-        if (tareas_pendientes.lenght > 0) {
-            console.log("El proyecto tiene tareas dentro");
+        let [tareas_pendientes] = await pooldb.query("SELECT * FROM tbl_tarea WHERE id_proyecto = ? ", [req.params.id]); 
+        if (tareas_pendientes.lenght > 0) 
             return res.status(400).json({
                 message: "El proyecto aun tiene tareas sin terminar"
-            })
-        }
+            });
+        
 
         let [rows] = await pooldb.query("DELETE FROM tbl_proyecto WHERE id = ?", [req.params.id]);
-        if (rows.length == 0)
+        if (rows.length <= 0)
             return res.status(404).json({
                 message: "Project not found",
-            })
+            });
 
         res.status(204).json();
     } catch (error) {
