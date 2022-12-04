@@ -1,8 +1,8 @@
 import { pooldb } from "../db.js";
 
-export const getVersions = async (req, res) => {
+export const getProdVersion = async (req, res) => {
 
-	try {		let [rows] = await pooldb.query("select * from tbl_version");
+	try {		let [rows] = await pooldb.query("select * from tbl_productos_y_versiones");
 
 		res.json(rows);
 
@@ -14,11 +14,11 @@ export const getVersions = async (req, res) => {
 
 };
 
-export const getVersion = async (req, res) => {
+export const getProdVersion = async (req, res) => {
 
 	try {
 
-		let [rows] = await pooldb.query("select * from tbl_version where id = ?", [
+		let [rows] = await pooldb.query("select * from tbl_productos_y_versiones" where id = ?", [
 
 			req.params.id,
 
@@ -28,7 +28,7 @@ export const getVersion = async (req, res) => {
 
 			return res.status(404).json({
 
-				message: "Version not found",
+				message: "Not found",
 
 			});
 
@@ -42,11 +42,11 @@ export const getVersion = async (req, res) => {
 
 };
 
-export const deteleVersion = async (req, res) => {
+export const deteleProdVersion = async (req, res) => {
 
 	try {
 
-		let [rows] = await pooldb.query("delete from tbl_version where id = ?", [
+		let [rows] = await pooldb.query("delete from tbl_productos_y_versiones" where id = ?", [
 
 			req.params.id,
 
@@ -56,7 +56,7 @@ export const deteleVersion = async (req, res) => {
 
 			return res.status(404).json({
 
-				message: "Version not found",
+				message: "Not found",
 
 			});
 
@@ -70,27 +70,20 @@ export const deteleVersion = async (req, res) => {
 
 };
 
-export const createVersion = async (req, res) => {
+export const createProdVersion = async (req, res) => {
 
 	try {
 
-		let {
-
-			nombre,
-
-			fecha_lanzamiento
-
-		} = req.body;
+		let {producto_id,version_id} = req.body;
 
 		let [rows] = await pooldb.query(
 
-			"insert into tbl_version set ?",
+			"insert into tbl_productos_y_versiones set ?",
 
 			{
 
-				nombre: nombre,
-
-				fecha_lanzamiento: fecha_lanzamiento
+				producto_id: producto_id,
+				version_id: version_id
 
 			}
 
@@ -98,11 +91,7 @@ export const createVersion = async (req, res) => {
 
 		res.send({
 
-			id: rows.insertId,
-
-			nombre,
-
-			fecha_lanzamiento
+			id: rows.insertId,producto_id, version_id 
 
 		});
 
@@ -113,35 +102,5 @@ export const createVersion = async (req, res) => {
 		res.status(500).send({ loQueEnvian, error });
 
 	}
-
 };
-
-export const updateVersion = async (req, res) => {
-
-	try {
-
-		let { id } = req.params;
-
-		let [rows] = await pooldb.query("UPDATE tbl_version SET ? WHERE id = ?", [req.body, id]);
-
-		if (rows.affectedRows < 1)
-
-			return res.status(404).json({
-
-				message: "Version not found",
-
-			});
-
-		let [result] = await pooldb.query("select * from tbl_version where id = ?", [id]);
-
-		res.json(result[0]);
-
-	} catch (error) {
-
-		const loQueEnvian = req.body;
-
-		res.status(500).send({ loQueEnvian, error });
-
-	}
-
-};
+	
