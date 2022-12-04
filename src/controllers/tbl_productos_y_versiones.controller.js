@@ -42,6 +42,34 @@ export const getProdVersion = async (req, res) => {
 
 };
 
+export const getProd = async (req, res) => {
+
+	try {
+
+		let [rows] = await pooldb.query("select * from tbl_productos_y_versiones where producto_id = ?", [
+
+			req.params.id,
+
+		]);
+
+		if (rows.length <= 0)
+
+			return res.status(404).json({
+
+				message: "Not found",
+
+			});
+
+		res.json(rows);
+
+	} catch (error) {
+
+		res.status(500).send({ error });
+
+	}
+
+};
+
 export const deteleProdVersion = async (req, res) => {
 
 	try {
