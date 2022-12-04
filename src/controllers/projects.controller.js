@@ -75,7 +75,7 @@ export const updateProject = async (req, res) => {
                 message: "Project not found",
             });
         let [result] = await pooldb.query("select * from tbl_proyecto where id = ?", [id]);
-        res.json(result[0]);
+        res.status(200).json(result[0]);
     } catch (error) {
         const loQueEnvian = req.body;
         res.status(500).send({ loQueEnvian, error });

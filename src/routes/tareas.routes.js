@@ -4,7 +4,7 @@ import {
 	getTarea,
 	createTarea,
 	updateTarea,
-	deteleTarea,
+	deleteTarea,
 } from "../controllers/tareas.controller.js";
 
 const router = Router();
@@ -17,6 +17,6 @@ router.post("/tareas", createTarea);
 
 router.put("/tareas/:id", updateTarea);
 
-router.delete("/tareas/:id", deteleTarea);
+router.delete("/tareas/:id", deleteTarea);
 
 export default router;

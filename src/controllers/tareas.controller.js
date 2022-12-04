@@ -31,7 +31,7 @@ export const getTarea = async (req, res) => {
 	}
 };
 
-export const deteleTarea = async (req, res) => {
+export const deleteTarea = async (req, res) => {
 	try {
 		let [rows] = await pooldb.query("delete from tbl_tarea where id = ?", [
 			req.params.id,
@@ -44,9 +44,7 @@ export const deteleTarea = async (req, res) => {
 
 		res.sendStatus(204);
 	} catch (error) {
-		return res.status(500).json({
-			message: "Something goes wrong",
-		});
+		return res.status(500).send(error);
 	}
 };
 
