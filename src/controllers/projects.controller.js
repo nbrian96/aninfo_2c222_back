@@ -55,7 +55,7 @@ export const deleteProject = async (req, res) => {
         
 
         let [rows] = await pooldb.query("DELETE FROM tbl_proyecto WHERE id = ?", [req.params.id]);
-        if (rows.length <= 0)
+        if (rows.affectedRows <= 0)
             return res.status(404).json({
                 message: "Project not found",
             });
