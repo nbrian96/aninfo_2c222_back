@@ -18,7 +18,7 @@ export const getProdVersion = async (req, res) => {
 
 	try {
 
-		let [rows] = await pooldb.query("select * from tbl_productos_y_versiones" where id = ?", [
+		let [rows] = await pooldb.query("select * from tbl_productos_y_versiones where id = ?", [
 
 			req.params.id,
 
