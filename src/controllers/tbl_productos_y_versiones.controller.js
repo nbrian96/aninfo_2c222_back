@@ -1,6 +1,6 @@
 import { pooldb } from "../db.js";
 
-export const getProdVersion = async (req, res) => {
+export const getProdVersions = async (req, res) => {
 
 	try {		let [rows] = await pooldb.query("select * from tbl_productos_y_versiones");
 
