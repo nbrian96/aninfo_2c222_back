@@ -47,8 +47,8 @@ export const getProject = async (req, res) => {
 export const deleteProject = async (req, res) => {
     try {
 
-        let [tareas_dependientes] = await pooldb.query("SELECT FROM tbl_tarea WHERE id_proyecto = ? ", [req.params.id]);
-        if(rows.affectedRows > 0){
+        let [tareas_pendientes] = await pooldb.query("SELECT FROM tbl_tarea WHERE id_proyecto = ? ", [req.params.id]);
+        if(tareas_pendientes.affectedRows > 0){
             return res.status(400).json({
                 message: "El proyecto aun tiene tareas sin terminar"
             })
