@@ -54,9 +54,7 @@ export const deleteProject = async (req, res) => {
 
         res.status(204).json();
     } catch (error) {
-        return res.status(500).json({
-            message: "Something goes wrong",
-        });
+        return res.status(500).send(error);
     }
 };
 
