@@ -46,7 +46,7 @@ export const deteleProdVersion = async (req, res) => {
 
 	try {
 
-		let [rows] = await pooldb.query("delete from tbl_productos_y_versiones" where id = ?", [
+		let [rows] = await pooldb.query("delete from tbl_productos_y_versiones where id = ?", [
 
 			req.params.id,
 
