@@ -33,7 +33,8 @@ export const getProject = async (req, res) => {
     try {
         let [rows] = await pooldb.query("SELECT * from tbl_proyecto where id = ?", [req.params.id]);
         console.log("Proyectos con el id pedida: " + rows.length);
-        if (rows.lenght < 1){
+        if (rows.lenght === 0){
+            console.log("No hay un proyecto con esa id");
             return res.status(404).json({
                 message: "Project not found",
             });
@@ -51,9 +52,10 @@ export const deleteProject = async (req, res) => {
         let [tareas_pendientes] = await pooldb.query("SELECT * FROM tbl_tarea WHERE id_proyecto = ? ", [req.params.id]);
         console.log("Cantidad de tareas del proyecto: " + tareas_pendientes.length);
         if(tareas_pendientes.lenght > 0){
+            console.log("El proyecto tiene tareas dentro");
             return res.status(400).json({
                 message: "El proyecto aun tiene tareas sin terminar"
-            })
+            });
         }
 
         let [rows] = await pooldb.query("DELETE FROM tbl_proyecto WHERE id = ?", [req.params.id]);
