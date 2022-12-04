@@ -22,7 +22,7 @@ export const createProject = async (req, res) => {
             horas_estimadas: horas_estimadas,
             horas_reales: horas_reales
         });
-        
+
         return res.status(200).json({ nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimadas, horas_reales, id: result.insertId });
     } catch (error) {
         return res.status(500).json({ message: "Something goes wrong" });
@@ -33,11 +33,12 @@ export const getProject = async (req, res) => {
     try {
         let [rows] = await pooldb.query("SELECT * from tbl_proyecto where id = ?", [req.params.id]);
         console.log("Proyectos con el id pedida: " + rows.length);
-        if (rows.lenght === 0){
-            console.log("No hay un proyecto con esa id");
+        console.log(row.lenght == 0);
+        if (rows.lenght == 0) {
+            console.log("No hay un proyecto con esa id")
             return res.status(404).json({
                 message: "Project not found",
-            });
+            })
         }
         res.status(200).json(rows[0]);
     } catch (error) {
@@ -46,23 +47,25 @@ export const getProject = async (req, res) => {
 };
 
 //FIX: Si el proyecto tiene tareas dentro tira status 500 en vez de 400
+//FIX: Si el proyecto no existe devuelve 204 en vez de 404
 export const deleteProject = async (req, res) => {
     try {
 
         let [tareas_pendientes] = await pooldb.query("SELECT * FROM tbl_tarea WHERE id_proyecto = ? ", [req.params.id]);
         console.log("Cantidad de tareas del proyecto: " + tareas_pendientes.length);
-        if(tareas_pendientes.lenght > 0){
+        console.log(tareas_pendientes.lenght == 0);
+        if (tareas_pendientes.lenght > 0) {
             console.log("El proyecto tiene tareas dentro");
             return res.status(400).json({
                 message: "El proyecto aun tiene tareas sin terminar"
-            });
+            })
         }
 
         let [rows] = await pooldb.query("DELETE FROM tbl_proyecto WHERE id = ?", [req.params.id]);
-        if (rows.length < 1)
+        if (rows.length == 0)
             return res.status(404).json({
                 message: "Project not found",
-            });
+            })
 
         res.status(204).json();
     } catch (error) {
