@@ -18,7 +18,6 @@ export const createProject = async (req, res) => {
             fecha_fin,
             fecha_fin_estimado,
             estado,
-            costo_acumulado,
             horas_reales,
             descripción,
             project_manager,
