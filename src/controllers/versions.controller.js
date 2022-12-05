@@ -47,21 +47,24 @@ export const createVersion = async (req, res) => {
 	try {
 		let {
 			nombre,
-			fecha_lanzamiento
+			fecha_lanzamiento,
+			activo
 		} = req.body;
 
 		let [rows] = await pooldb.query(
 			"insert into tbl_version set ?",
 			{
 				nombre: nombre,
-				fecha_lanzamiento: fecha_lanzamiento
+				fecha_lanzamiento: fecha_lanzamiento,
+				activo: activo
 			}
 		);
 
 		res.send({
 			id: rows.insertId,
 			nombre,
-			fecha_lanzamiento
+			fecha_lanzamiento,
+			activo
 		});
 	} catch (error) {
 		const loQueEnvian = req.body;
