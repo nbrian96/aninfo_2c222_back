@@ -36,28 +36,31 @@ export const createClient = async (req, res) => {
   };
 
   
-export const getClients = async (req, res) => {
-    try {
-        const [rows] = await pooldb.query("SELECT * FROM tbl_cliente");
-        res.json(rows);
-    } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
-    }
-};
+// export const getClients = async (req, res) => {
+//     try {
+//         const [rows] = await pooldb.query("SELECT * FROM tbl_cliente");
+//         res.json(rows);
+//     } catch (error) {
+//         return res.status(500).json({ message: "Something goes wrong" });
+//     }
+// };
 
-// export const getClients = async () => {
-//   try {
+export const getClients = async () => {
+  try {
 
-//     const response = await fetch(url_api_clientes);
-//     console.log(response);
-//     const datos = await response.json();
-//     console.log(datos);
+      const response = await fetch(url_api_clientes);
+      console.log(response);
+      const datos = await response.json();
+      console.log(datos);
+      return datos;
 
-//   } catch(errror) {
+  } catch(errror) {
 
-//     console.log(error);
-//   }
-// }
+      console.log(error);
+      return res.status(500).json({ message: "Something goes wrong" });
+
+  }
+}
 
 export const getClient = async (req, res) => {
     try {
