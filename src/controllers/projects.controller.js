@@ -11,7 +11,8 @@ export const getProjects = async (req, res) => {
 
 export const createProject = async (req, res) => {
     try {
-        const { nombre, fecha_inicio, fecha_fin, fecha_fin_estimado, horas_reales, descripción, project_manager, id_cliente } = req.body;
+        const { nombre, fecha_inicio, fecha_fin, fecha_fin_estimado, horas_reales, descripción, project_manager, id_cliente, estado} = req.body;
+        estado = "Pendiente";
         const [result] = await pooldb.query('INSERT INTO tbl_proyecto SET ?', {
             nombre,
             fecha_inicio,
@@ -21,10 +22,10 @@ export const createProject = async (req, res) => {
             descripción,
             project_manager,
             id_cliente,
-            estado: "Pendiente"
+            estado,
         });
 
-        return res.status(200).json({ nombre, fecha_inicio, fecha_fin_estimado, estado, horas_reales, descripción, project_manager, id_cliente, id: result.insertId});
+        return res.status(200).json({ nombre, fecha_inicio, fecha_fin_estimado, fecha_fin, estado, horas_reales, descripción, project_manager, id_cliente, id: result.insertId});
     } catch (error) {
         const loQueEnvian = req.body;
         return res.status(500).send({ error, loQueEnvian});
