@@ -1,4 +1,5 @@
 import { pooldb } from "../db.js";
+const url_api_clientes = "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
 
 export const createClient = async (req, res) => {
     try {
@@ -43,6 +44,20 @@ export const getClients = async (req, res) => {
         return res.status(500).json({ message: "Something goes wrong" });
     }
 };
+
+// export const getClients = async () => {
+//   try {
+
+//     const response = await fetch(url_api_clientes);
+//     console.log(response);
+//     const datos = await response.json();
+//     console.log(datos);
+
+//   } catch(errror) {
+
+//     console.log(error);
+//   }
+// }
 
 export const getClient = async (req, res) => {
     try {
