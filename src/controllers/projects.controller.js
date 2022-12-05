@@ -24,7 +24,7 @@ export const createProject = async (req, res) => {
             id_cliente,
             estado,
         });
-        
+
         return res.status(200).json({ nombre, fecha_inicio, fecha_fin_estimado, fecha_fin, horas_reales, descripción, project_manager, id_cliente, estado, id: result.insertId });
     } catch (error) {
         const loQueEnvian = req.body;
@@ -83,5 +83,4 @@ export const updateProject = async (req, res) => {
         const loQueEnvian = req.body;
         res.status(500).send({ loQueEnvian, error });
     }
-
 };
