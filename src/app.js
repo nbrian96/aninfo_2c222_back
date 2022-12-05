@@ -13,7 +13,11 @@ import versionRoutes from "./routes/versions.routes.js";
 import productoRoutes from "./routes/producto.routes.js";
 import prodVersionRoutes from "./routes/tbl_productos_y_versiones.routes.js";
 
+import cors from "cors"
+
 const app = express();
+
+app.use(cors())
 
 app.use(express.json());
 
