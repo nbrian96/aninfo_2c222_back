@@ -35,7 +35,7 @@ export const deleteTarea = async (req, res) => {
 	try {
 		await pooldb.query("delete from tbl_horas where id_tarea = ?", [req.params.id,]);
 		let [rows] = await pooldb.query("delete from tbl_tarea where id = ?", [req.params.id,]);
-
+		
 		if (rows.affectedRows < 1)
 			return res.status(404).json({
 				message: "Tarea not found",

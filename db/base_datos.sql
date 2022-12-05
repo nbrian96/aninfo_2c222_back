@@ -21,15 +21,31 @@ CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyecto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `fecha_inicio` DATETIME NULL,
+  `fecha_fin_estimado` DATETIME NULL,
   `fecha_fin` DATETIME NULL,
   `estado` VARCHAR(45) NULL,
-  `prioridad` VARCHAR(45) NULL,
-  `costo_acumulado` INT NULL,
-  `horas_estimadas` INT NULL,
   `horas_reales` INT NULL,
+  `descripción` VARCHAR(255) NULL,
+  `project_manager` VARCHAR(45),
+  `id_cliente` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `psa`.`tbl_proyecto_recurso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyecto_recurso` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_proyecto` INT NULL,
+  `legajo_recurso` INT NULL,
+  PRIMARY KEY (`id`)
+  INDEX `id_proyecto_idx` (`id_proyecto` ASC) VISIBLE,
+  CONSTRAINT `id_proyectot`
+    FOREIGN KEY (`id_proyecto`)
+    REFERENCES `psa`.`tbl_proyecto` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `psa`.`tbl_tarea`
@@ -37,6 +53,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `psa`.`tbl_tarea` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_proyecto` INT NULL,
+  `legajo_recurso` INT NULL,
   `estado` VARCHAR(45) NULL,
   `descripcion` MEDIUMTEXT NULL,
   `horas_estimadas` INT NULL,
@@ -45,6 +62,49 @@ CREATE TABLE IF NOT EXISTS `psa`.`tbl_tarea` (
   CONSTRAINT `id_proyectot`
     FOREIGN KEY (`id_proyecto`)
     REFERENCES `psa`.`tbl_proyecto` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `psa`.`tbl_tarea_2`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `psa`.`tbl_tarea_2` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_proyecto` INT NULL,
+  `estado` VARCHAR(45) NULL,
+  `prioridad` VARCHAR(45) NULL,
+  `descripcion` MEDIUMTEXT NULL,
+  `horas_estimadas` INT NULL,
+  `horas_reales` INT NULL,
+  `fecha_inicio` DATETIME NULL,
+  `fecha_fin` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_proyecto_idx` (`id_proyecto` ASC) VISIBLE,
+  CONSTRAINT `id_proyectot`
+    FOREIGN KEY (`id_proyecto`)
+    REFERENCES `psa`.`tbl_proyecto` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `psa`.`tbl_subtarea`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `psa`.`tbl_subtarea` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_tarea_padre` INT NULL,
+  `id_tarea_hija` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_tarea_padre_idx` (`id_tarea_padre` ASC) VISIBLE,
+  CONSTRAINT `id_tarea_padret`
+    FOREIGN KEY (`id_tarea_padre`)
+    REFERENCES `psa`.`tbl_tarea_2` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+  CONSTRAINT `id_tarea_hijat`
+    FOREIGN KEY (`id_tarea_hija`)
+    REFERENCES `psa`.`tbl_tarea_2` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

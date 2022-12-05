@@ -16,33 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbl_proyecto`
+-- Table structure for table `tbl_proyecto_recurso`
 --
 
-DROP TABLE IF EXISTS `tbl_proyecto`;
+DROP TABLE IF EXISTS `tbl_proyecto_recurso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_proyecto` (
+CREATE TABLE `tbl_proyecto_recurso` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NULL,
-  `fecha_inicio` DATETIME NULL,
-  `fecha_fin_estimado` DATETIME NULL,
-  `estado` VARCHAR(45) NULL,
-  `horas_reales` INT NULL,
-  `descripción` VARCHAR(255) NULL,
-  `project_manager` VARCHAR(45),
-  `id_cliente` INT NULL,
+  `id_proyecto` INT NULL,
+  `legajo_recurso` INT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_proyecto`
+-- Dumping data for table `tbl_proyecto_recurso`
 --
 
-LOCK TABLES `tbl_proyecto` WRITE;
-/*!40000 ALTER TABLE `tbl_proyecto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbl_proyecto` ENABLE KEYS */;
+LOCK TABLES `tbl_proyecto_recurso` WRITE;
+/*!40000 ALTER TABLE `tbl_proyecto_recurso` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_proyecto_recurso` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

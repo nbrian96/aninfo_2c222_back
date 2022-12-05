@@ -5,35 +5,36 @@ export const getProjects = async (req, res) => {
         const [result] = await pooldb.query('SELECT * FROM tbl_proyecto');
         return res.status(200).json(result);
     } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        return res.status(500).send({ error });
     }
 };
 
 export const createProject = async (req, res) => {
     try {
-        const { nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimadas, horas_reales } = req.body;
+        const { nombre, fecha_inicio, fecha_fin, fecha_fin_estimado, estado, costo_acumulado, horas_reales, descripción, project_manager, id_cliente } = req.body;
         const [result] = await pooldb.query('INSERT INTO tbl_proyecto SET ?', {
-            nombre: nombre,
-            fecha_inicio: fecha_inicio,
-            fecha_fin: fecha_fin,
-            estado: estado,
-            prioridad: prioridad,
-            costo_acumulado: costo_acumulado,
-            horas_estimadas: horas_estimadas,
-            horas_reales: horas_reales
+            nombre,
+            fecha_inicio,
+            fecha_fin,
+            fecha_fin_estimado,
+            estado,
+            horas_reales,
+            descripción,
+            project_manager,
+            id_cliente,
         });
 
-        return res.status(200).json({ nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimadas, horas_reales, id: result.insertId });
+        return res.status(200).json({ nombre, fecha_inicio, fecha_fin_estimado, estado, horas_reales, descripción, project_manager, id_cliente, id: result.insertId });
     } catch (error) {
-        return res.status(500).json({ message: "Something goes wrong" });
+        return res.status(500).send({ error });
     }
 };
 
 export const getProject = async (req, res) => {
     try {
         let [rows] = await pooldb.query("select * from tbl_proyecto where id = ?", [req.params.id]);
-        
-        if (rows.length <= 0) 
+
+        if (rows.length <= 0)
             return res.status(404).json({
                 message: "Project not found",
             });
@@ -47,12 +48,12 @@ export const getProject = async (req, res) => {
 export const deleteProject = async (req, res) => {
     try {
 
-        let [tareas_pendientes] = await pooldb.query("SELECT * FROM tbl_tarea WHERE id_proyecto = ? ", [req.params.id]); 
-        if (tareas_pendientes.length > 0) 
+        let [tareas_pendientes] = await pooldb.query("SELECT * FROM tbl_tarea WHERE id_proyecto = ? ", [req.params.id]);
+        if (tareas_pendientes.length > 0)
             return res.status(400).json({
                 message: "El proyecto aun tiene tareas sin terminar"
             });
-        
+
 
         let [rows] = await pooldb.query("DELETE FROM tbl_proyecto WHERE id = ?", [req.params.id]);
         if (rows.affectedRows <= 0)
