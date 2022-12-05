@@ -37,7 +37,7 @@ export const getProdWithCliente = async (req, res) => {
 				message: "Cliente/Producto not found",
 			});
 
-		res.json(rows[0]);
+		res.json(rows);
 	} catch (error) {
 		res.status(500).send({ error });
 	}
