@@ -12,6 +12,8 @@ import clientesRoutes from "./routes/clientes.routes.js";
 import versionRoutes from "./routes/versions.routes.js";
 import productoRoutes from "./routes/producto.routes.js";
 import prodVersionRoutes from "./routes/tbl_productos_y_versiones.routes.js";
+import clienteProdRoutes from "./routes/tbl_cliente_producto.routes.js";
+
 
 import cors from "cors"
 
@@ -33,6 +35,7 @@ app.use("/api", clientesRoutes);
 app.use("/api", versionRoutes);
 app.use("/api", productoRoutes);
 app.use("/api", prodVersionRoutes);
+app.use("/api", clienteProdRoutes);
 
 app.use((req, res, next) => {
     res.status(404).json({
