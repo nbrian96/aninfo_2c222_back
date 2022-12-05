@@ -23,15 +23,15 @@ DROP TABLE IF EXISTS `tbl_proyecto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_proyecto` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) DEFAULT NULL,
-  `fecha_inicio` datetime DEFAULT NULL,
-  `fecha_fin` datetime DEFAULT NULL,
-  `estado` varchar(45) DEFAULT NULL,
-  `prioridad` varchar(45) DEFAULT NULL,
-  `costo_acumulado` int DEFAULT NULL,
-  `horas_estimadas` int DEFAULT NULL,
-  `horas_reales` int DEFAULT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `fecha_inicio` DATETIME NULL,
+  `fecha_fin_estimado` DATETIME NULL,
+  `estado` VARCHAR(45) NULL,
+  `horas_reales` INT NULL,
+  `descripción` VARCHAR(255) NULL,
+  `project_manager` VARCHAR(45),
+  `id_cliente` INT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -21,23 +21,8 @@ CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyecto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `fecha_inicio` DATETIME NULL,
-  `fecha_fin` DATETIME NULL,
-  `estado` VARCHAR(45) NULL,
-  `prioridad` VARCHAR(45) NULL,
-  `costo_acumulado` INT NULL,
-  `horas_estimadas` INT NULL,
-  `horas_reales` INT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `psa`.`tbl_proyecto_2`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyecto_2` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NULL,
-  `fecha_inicio` DATETIME NULL,
   `fecha_fin_estimado` DATETIME NULL,
+  `fecha_fin` DATETIME NULL,
   `estado` VARCHAR(45) NULL,
   `horas_reales` INT NULL,
   `descripción` VARCHAR(255) NULL,
