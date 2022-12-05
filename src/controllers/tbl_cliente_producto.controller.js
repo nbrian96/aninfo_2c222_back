@@ -43,6 +43,23 @@ export const getProdWithCliente = async (req, res) => {
 	}
 };
 
+export const getClienteWithProd = async (req, res) => {
+	try {
+		let [rows] = await pooldb.query("select * from tbl_cliente_producto where id_producto = ?", [
+			req.params.id,
+		]);
+
+		if (rows.length <= 0)
+			return res.status(404).json({
+				message: "Cliente/Producto not found",
+			});
+
+		res.json(rows);
+	} catch (error) {
+		res.status(500).send({ error });
+	}
+};
+
 
 export const deleteClienteProd = async (req, res) => {
 	try {
