@@ -24,7 +24,7 @@ export const createProject = async (req, res) => {
             estado: "Pendiente"
         });
 
-        return res.status(200).json({ nombre, fecha_inicio, fecha_fin_estimado, estado, horas_reales, descripción, project_manager, id_cliente, id: result.insertId, estado});
+        return res.status(200).json({ nombre, fecha_inicio, fecha_fin_estimado, estado, horas_reales, descripción, project_manager, id_cliente, id: result.insertId});
     } catch (error) {
         const loQueEnvian = req.body;
         return res.status(500).send({ error, loQueEnvian});
