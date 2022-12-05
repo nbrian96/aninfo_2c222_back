@@ -22,7 +22,7 @@ export const createProject = async (req, res) => {
             horas_estimadas: horas_estimadas,
             horas_reales: horas_reales
         });
-
+        
         return res.status(200).json({ nombre, fecha_inicio, fecha_fin, estado, prioridad, costo_acumulado, horas_estimadas, horas_reales, id: result.insertId });
     } catch (error) {
         return res.status(500).json({ message: "Something goes wrong" });
