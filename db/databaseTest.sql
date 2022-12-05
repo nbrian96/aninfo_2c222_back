@@ -100,6 +100,15 @@ CREATE TABLE `tbl_ticket` (
 ENGINE = InnoDB;
 
 
+DROP TABLE IF EXISTS `tbl_cliente_producto`;
+CREATE TABLE `tbl_cliente_producto` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_cliente` INT UNSIGNED NOT NULL,
+  `id_producto`  INT UNSIGNED NOT NULL,
+  `id_version`  INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `psa`.`tbl_gerente`
