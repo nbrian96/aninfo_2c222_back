@@ -94,23 +94,7 @@ export const updateTarea = async (req, res) => {
 	try {
 		let { id } = req.params;
 
-		let {
-			id_proyecto,
-			estado,
-			descripcion,
-			horas_estimadas
-		} = req.body;
-
-		let [rows] = await pooldb.query(
-			"update tbl_tarea set id_proyecto = ?,estado = ?,descripcion = ?,horas_estimadas = ?  where id = ?",
-			[
-				id_proyecto,
-				estado,
-				descripcion,
-				horas_estimadas,
-				id
-			]
-		);
+		let [rows] = await pooldb.query("UPDATE tbl_tarea SET ? WHERE id = ?", [req.body, id]);
 
 		if (rows.affectedRows < 1)
 			return res.status(404).json({
@@ -122,8 +106,6 @@ export const updateTarea = async (req, res) => {
 		res.json(result[0]);
 
 	} catch (error) {
-		return res.status(500).json({
-			message: "Something goes wrong",
-		});
+		return res.status(500).json(error);
 	}
 };
