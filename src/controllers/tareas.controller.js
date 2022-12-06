@@ -17,7 +17,7 @@ export const getTarea = async (req, res) => {
 		let [rows] = await pooldb.query("select * from tbl_tarea where id = ?", [
 			req.params.id,
 		]);
-		
+
 		if (rows.length <= 0)
 			return res.status(404).json({
 				message: "Tarea not found",
@@ -62,6 +62,11 @@ export const createTarea = async (req, res) => {
 			prioridad,
 		} = req.body;
 
+		if (fecha_fin_estimado < fecha_inicio)
+			return res.status(400).json({
+				message: "La fecha de fin esperado no puede ser menor a la fecha de inicio"
+			});
+		
 		let [rows] = await pooldb.query(
 			"insert into tbl_tarea SET ?",
 			{
@@ -107,7 +112,7 @@ export const updateTarea = async (req, res) => {
 			});
 
 		let [result] = await pooldb.query("select * from tbl_tarea where id = ?", [id]);
-		
+
 		res.json(result[0]);
 
 	} catch (error) {
