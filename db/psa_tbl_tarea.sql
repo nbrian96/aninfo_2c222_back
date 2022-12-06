@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS `tbl_tarea`;
 CREATE TABLE `tbl_tarea` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_proyecto` INT NULL,
-  `id_ticket` INT NULL,
   `legajo_recurso` INT NULL,
   `estado` VARCHAR(45) NULL,
   `prioridad` VARCHAR(45) NULL,
