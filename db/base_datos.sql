@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyecto` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `psa`.`tbl_proyecto_recurso`
+-- Table `psa`.`tbl_proyectos_y_recursos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyecto_recurso` (
   `id` INT NOT NULL AUTO_INCREMENT,
