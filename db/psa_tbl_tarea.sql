@@ -23,12 +23,16 @@ DROP TABLE IF EXISTS `tbl_tarea`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_tarea` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_proyecto` int DEFAULT NULL,
-  `estado` varchar(45) DEFAULT NULL,
-  `descripcion` mediumtext,
-  `horas_estimadas` int DEFAULT NULL,
-  `horas_totales` int DEFAULT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_proyecto` INT NULL,
+  `legajo_recurso` INT NULL,
+  `estado` VARCHAR(45) NULL,
+  `prioridad` VARCHAR(45) NULL,
+  `descripcion` MEDIUMTEXT NULL,
+  `horas_estimadas` INT NULL,
+  `horas_reales` INT NULL,
+  `fecha_inicio` DATETIME NULL,
+  `fecha_fin` DATETIME NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;

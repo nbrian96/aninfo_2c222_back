@@ -55,24 +55,6 @@ CREATE TABLE IF NOT EXISTS `psa`.`tbl_tarea` (
   `id_proyecto` INT NULL,
   `legajo_recurso` INT NULL,
   `estado` VARCHAR(45) NULL,
-  `descripcion` MEDIUMTEXT NULL,
-  `horas_estimadas` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `id_proyecto_idx` (`id_proyecto` ASC) VISIBLE,
-  CONSTRAINT `id_proyectot`
-    FOREIGN KEY (`id_proyecto`)
-    REFERENCES `psa`.`tbl_proyecto` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `psa`.`tbl_tarea_2`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `psa`.`tbl_tarea_2` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `id_proyecto` INT NULL,
-  `estado` VARCHAR(45) NULL,
   `prioridad` VARCHAR(45) NULL,
   `descripcion` MEDIUMTEXT NULL,
   `horas_estimadas` INT NULL,
