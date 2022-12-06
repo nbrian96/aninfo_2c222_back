@@ -49,8 +49,8 @@ export const getClients = async () => {
   try {
 
       const response = await fetch(url_api_clientes, {
-          'mode': 'no-cors'
-          // 'headers': {'Access-Control-Allow-Origin': '*',}
+          'mode': 'cors',
+          'headers': {'Access-Control-Allow-Origin': '*',}
       });
       console.log(response);
       const datos = await response.json();
