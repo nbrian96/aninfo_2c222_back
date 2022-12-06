@@ -52,6 +52,7 @@ export const createTarea = async (req, res) => {
 		let {
 			id_proyecto,
 			legajo_recurso,
+			id_ticket,
 			estado,
 			descripcion,
 			horas_estimadas,
@@ -66,6 +67,7 @@ export const createTarea = async (req, res) => {
 			{
 				id_proyecto,
 				legajo_recurso,
+				id_ticket,
 				estado,
 				descripcion,
 				horas_estimadas,
@@ -79,6 +81,7 @@ export const createTarea = async (req, res) => {
 			id: rows.insertId,
 			id_proyecto,
 			legajo_recurso,
+			id_ticket,
 			estado,
 			descripcion,
 			horas_estimadas,
