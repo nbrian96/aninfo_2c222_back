@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyectos_y_recursos` (
 CREATE TABLE IF NOT EXISTS `psa`.`tbl_tarea` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_proyecto` INT NULL,
+  `id_ticket` INT NULL,
   `legajo_recurso` INT NULL,
   `estado` VARCHAR(45) NULL,
   `prioridad` VARCHAR(45) NULL,

@@ -26,6 +26,7 @@ CREATE TABLE `tbl_ticket` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_tarea` int NOT NULL,
   `id_producto` int NOT NULL,
+  `id_ticket` INT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `descripcion` mediumtext,
   `severidad` varchar(45) DEFAULT NULL,
