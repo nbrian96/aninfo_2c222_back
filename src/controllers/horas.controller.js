@@ -85,7 +85,9 @@ export const getHorasExtraTotalesEmpleado = async (req, res) => {
 export const deleteHora = async (req, res) => {
   try {
     const { id } = req.params.id;
-    const [rows] = await pooldb.query("DELETE FROM tbl_horas WHERE id = ?", [id]);
+    const [rows] = await pooldb.query("DELETE FROM tbl_horas WHERE id = ?", [
+      id,
+    ]);
 
     if (rows.affectedRows <= 0) {
       return res.status(404).json({ message: "Hora not found" });
