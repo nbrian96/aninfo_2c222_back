@@ -30,10 +30,9 @@ export const getFalta = async (req, res) => {
 
 export const deleteFalta = async (req, res) => {
     try {
-      const { id } = req.params.id;
-      const [rows] = await pooldb.query("DELETE FROM tbl_faltas WHERE id = ?", [id]);
+      let [rows] = await pooldb.query("DELETE FROM tbl_faltas WHERE id = ?", [req.params.id, ]);
   
-      if (rows.affectedRows <= 0) {
+      if (rows.affectedRows < 1) {
         return res.status(404).json({ message: "Falta not found" });
       }
   
