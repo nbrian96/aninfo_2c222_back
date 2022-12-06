@@ -34,7 +34,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `psa`.`tbl_proyectos_y_recursos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyecto_recurso` (
+CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyectos_y_recursos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_proyecto` INT NULL,
   `legajo_recurso` INT NULL,
@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyecto_recurso` (
 CREATE TABLE IF NOT EXISTS `psa`.`tbl_tarea` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_proyecto` INT NULL,
+  `id_ticket` INT NULL,
   `legajo_recurso` INT NULL,
   `estado` VARCHAR(45) NULL,
   `prioridad` VARCHAR(45) NULL,
@@ -66,6 +67,11 @@ CREATE TABLE IF NOT EXISTS `psa`.`tbl_tarea` (
   CONSTRAINT `id_proyectot`
     FOREIGN KEY (`id_proyecto`)
     REFERENCES `psa`.`tbl_proyecto` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+  CONSTRAINT `id_tickett`
+    FOREIGN KEY (`id_ticket`)
+    REFERENCES `psa`.`tbl_ticket` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbl_proyecto_recurso`
+-- Table structure for table `tbl_proyectos_y_recursos`
 --
 
-DROP TABLE IF EXISTS `tbl_proyecto_recurso`;
+DROP TABLE IF EXISTS `tbl_proyectos_y_recursos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_proyecto_recurso` (
+CREATE TABLE `tbl_proyectos_y_recursos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_proyecto` INT NULL,
   `legajo_recurso` INT NULL,
@@ -31,12 +31,12 @@ CREATE TABLE `tbl_proyecto_recurso` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_proyecto_recurso`
+-- Dumping data for table `tbl_proyectos_y_recursos`
 --
 
-LOCK TABLES `tbl_proyecto_recurso` WRITE;
-/*!40000 ALTER TABLE `tbl_proyecto_recurso` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbl_proyecto_recurso` ENABLE KEYS */;
+LOCK TABLES `tbl_proyectos_y_recursos` WRITE;
+/*!40000 ALTER TABLE `tbl_proyectos_y_recursos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_proyectos_y_recursos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

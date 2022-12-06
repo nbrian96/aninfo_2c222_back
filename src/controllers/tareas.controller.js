@@ -51,19 +51,23 @@ export const createTarea = async (req, res) => {
 	try {
 		let {
 			id_proyecto,
+			id_ticket,
+			legajo_recurso,
 			estado,
 			descripcion,
 			horas_estimadas,
 			horas_reales,
 			fecha_fin,
 			fecha_inicio,
-			prioridad
+			prioridad,
 		} = req.body;
 
 		let [rows] = await pooldb.query(
 			"insert into tbl_tarea SET ?",
 			{
 				id_proyecto,
+				id_ticket,
+				legajo_recurso,
 				estado,
 				descripcion,
 				horas_estimadas,
@@ -77,6 +81,8 @@ export const createTarea = async (req, res) => {
 		res.send({
 			id: rows.insertId,
 			id_proyecto,
+			id_ticket,
+			legajo_recurso,
 			estado,
 			descripcion,
 			horas_estimadas,
