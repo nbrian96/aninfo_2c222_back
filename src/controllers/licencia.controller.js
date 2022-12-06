@@ -86,7 +86,7 @@ export const createLicencia = async (req, res) => {
       let { legajo_empleado, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo } = req.body;
 
         let [rows] = await pooldb.query(
-          "INSERT INTO tbl_horas (legajo_empleado, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo) VALUES (?, ?, ?, ?, ?, ?)",
+          "INSERT INTO tbl_licencia (legajo_empleado, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo) VALUES (?, ?, ?, ?, ?, ?)",
           [legajo_empleado, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo]
         );
         res.json({ id: rows.insertId, legajo, tipo_licencia, descripcion, fecha_inicio, fecha_fin, goce_sueldo });
