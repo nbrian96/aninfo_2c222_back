@@ -48,7 +48,7 @@ export const deleteTarea = async (req, res) => {
 };
 
 export const createTarea = async (req, res) => {
-	/*try {
+	try {
 		let {
 			id_proyecto,
 			legajo_recurso,
@@ -60,51 +60,6 @@ export const createTarea = async (req, res) => {
 			fecha_inicio,
 			prioridad,
 		} = req.body;
-
-		let [rows] = await pooldb.query(
-			"insert into tbl_tarea SET ?",
-			{
-				id_proyecto,
-				legajo_recurso,
-				estado,
-				descripcion,
-				horas_estimadas,
-				horas_reales,
-				fecha_fin,
-				fecha_inicio,
-				prioridad,
-			});
-
-		res.send({
-			id: rows.insertId,
-			id_proyecto,
-			legajo_recurso,
-			estado,
-			descripcion,
-			horas_estimadas,
-			horas_reales,
-			fecha_fin,
-			fecha_inicio,
-			prioridad,
-		});
-	} catch (error) {
-		return res.status(500).send(error);
-	}*/
-	return saveTarea(req, res);
-};
-
-const saveTarea = async (req, res) => {
-	try {
-		let {
-			id_proyecto,
-			legajo_recurso,
-			estado,
-			descripcion,
-			horas_estimadas,
-			horas_reales,
-			fecha_fin,
-			fecha_inicio,
-			prioridad,} = req.body;
 
 		let [rows] = await pooldb.query(
 			"insert into tbl_tarea SET ?",
@@ -135,58 +90,7 @@ const saveTarea = async (req, res) => {
 	} catch (error) {
 		return res.status(500).send(error);
 	}
-}
-
-export const createSubtarea = async (req, res) => {
-	try{
-		let { id } = req.params;
-		let {
-			id_proyecto,
-			legajo_recurso,
-			estado,
-			descripcion,
-			horas_estimadas,
-			horas_reales,
-			fecha_fin,
-			fecha_inicio,
-			prioridad,
-		} = req.body;
-
-		let [rows] = await pooldb.query(
-			"insert into tbl_tarea SET ?",
-			{
-				id_proyecto,
-				legajo_recurso,
-				estado,
-				descripcion,
-				horas_estimadas,
-				horas_reales,
-				fecha_fin,
-				fecha_inicio,
-				prioridad,
-			});
-
-		await pooldb.query("insert into tbl_subtarea SET ?",{
-			id_tarea_padre: id,
-			id_tarea_hija: rows.insertId,
-		})
-
-		return res.status(200).json({
-			id: rows.insertId,
-			id_proyecto,
-			legajo_recurso,
-			estado,
-			descripcion,
-			horas_estimadas,
-			horas_reales,
-			fecha_fin,
-			fecha_inicio,
-			prioridad,
-		});
-	} catch (error){
-		return res.status(500).send(error);
-	}
-}
+};
 
 export const updateTarea = async (req, res) => {
 	try {
