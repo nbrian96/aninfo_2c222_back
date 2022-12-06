@@ -35,7 +35,7 @@ export const deleteTarea = async (req, res) => {
 	try {
 		await pooldb.query("delete from tbl_horas where id_tarea = ?", [req.params.id,]);
 		let [rows] = await pooldb.query("delete from tbl_tarea where id = ?", [req.params.id,]);
-		
+
 		if (rows.affectedRows < 1)
 			return res.status(404).json({
 				message: "Tarea not found",
@@ -53,18 +53,25 @@ export const createTarea = async (req, res) => {
 			id_proyecto,
 			estado,
 			descripcion,
-			horas_estimadas
+			horas_estimadas,
+			horas_reales,
+			fecha_fin,
+			fecha_inicio,
+			prioridad
 		} = req.body;
 
 		let [rows] = await pooldb.query(
-			"insert into tbl_tarea (id_proyecto,estado,descripcion,horas_estimadas) values (?, ?, ?, ?)",
-			[
+			"insert into tbl_tarea SET ?",
+			{
 				id_proyecto,
 				estado,
 				descripcion,
-				horas_estimadas
-			]
-		);
+				horas_estimadas,
+				horas_reales,
+				fecha_fin,
+				fecha_inicio,
+				prioridad,
+			});
 
 		console.log(rows);
 		res.send({
@@ -72,12 +79,14 @@ export const createTarea = async (req, res) => {
 			id_proyecto,
 			estado,
 			descripcion,
-			horas_estimadas
+			horas_estimadas,
+			horas_reales,
+			fecha_fin,
+			fecha_inicio,
+			prioridad,
 		});
 	} catch (error) {
-		return res.status(500).json({
-			message: "Something goes wrong",
-		});
+		return res.status(500).send(error);
 	}
 };
 
