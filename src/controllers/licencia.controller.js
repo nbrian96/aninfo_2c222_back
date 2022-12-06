@@ -30,8 +30,7 @@ export const getLicencia = async (req, res) => {
 
 export const deleteLicencia = async (req, res) => {
     try {
-      const { id } = req.params.id;
-      const [rows] = await pooldb.query("DELETE FROM tbl_licencia WHERE id = ?", [id]);
+      const [rows] = await pooldb.query("DELETE FROM tbl_licencia WHERE id = ?", [req.params.id, ]);
   
       if (rows.affectedRows <= 0) {
         return res.status(404).json({ message: "Hora not found" });
@@ -51,7 +50,7 @@ export const getLicenciaEmpleado = async (req, res) => {
       legajo_empleado,
     ]);
 
-    if (rows.length <= 0) {
+    if (rows.length < 1) {
       return res.status(404).json({ message: "Hora not found" });
     }
 
