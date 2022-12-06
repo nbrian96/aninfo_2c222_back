@@ -17,7 +17,7 @@ export const getTarea = async (req, res) => {
 		let [rows] = await pooldb.query("select * from tbl_tarea where id = ?", [
 			req.params.id,
 		]);
-
+		
 		if (rows.length <= 0)
 			return res.status(404).json({
 				message: "Tarea not found",
@@ -107,7 +107,7 @@ export const updateTarea = async (req, res) => {
 			});
 
 		let [result] = await pooldb.query("select * from tbl_tarea where id = ?", [id]);
-
+		
 		res.json(result[0]);
 
 	} catch (error) {
