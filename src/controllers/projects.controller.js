@@ -77,14 +77,16 @@ export const deleteProject = async (req, res) => {
 
 export const updateProject = async (req, res) => {
     try {
-        
+
         let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [req.body, id]);
 
         if (rows.affectedRows < 1)
             return res.status(404).json({
                 message: "Project not found",
             });
+        
         let [result] = await pooldb.query("select * from tbl_proyecto where id = ?", [id]);
+        console.log(result);
         res.status(200).json(result[0]);
     } catch (error) {
         const loQueEnvian = req.body;
