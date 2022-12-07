@@ -1,0 +1,60 @@
+Horas
+
+getHoras: Con el simple llamado te trae todas las horas cargadas en la base de datos.
+
+getHora: Si le pasas un id que este incluido en la base de datos te devuelve todos los datos cargados de esa carga de horas. En caso de no existir tira Error 404.
+
+getHoraEmpleado: Parecido a getHora, pasandole el legajo de un empleado te devuelve todas las horas cargadas por dicho usuario tirando Error 404 en caso de no existir tal usuario
+
+getHorasTotalesEmpleado: Al pasarle el legajo de un empleado te devuelve la suma de las horas cargadas de dicho empleado. En caso de no existir tal usuario tira Error 404.
+
+getHorasExtraTotalesEmpleado: Al pasarle el legajo de un empleado te devuelve la suma de las horas cargadas de dicho empleado donde este haya marcado que son horas extra. 
+En caso de no existir tal usuario tira Error 404.
+
+deleteHora: Parecido a getHora, cuando se le pasa el id de una carga de horas procede a borrarlo devolviendo 204. En caso de no existir tal usuario tira Error 404.
+
+updateHoras: Te permite cambiar la cantidad de horas y a que tarea esta cargada pasandole el id de esa carga de horas.
+
+createHora: Cargando todos los ratos que sean obligatorios como el legajo del empleado que carga y la tarea a la que le esta cargando te permite crear una nueva carga de horas.
+
+
+Faltas
+
+getFaltas: Con el simple llamado te trae todas las faltas cargadas en la base de datos.
+
+getFalta: Si le pasas un id que este incluido en la base de datos te devuelve todos los datos cargados de esa falta. En caso de no existir tira Error 404.
+
+getFaltasEmpleado: Parecido a getFalta, pasandole el legajo de un empleado te devuelve todas las faltas de dicho usuario tirando Error 404 en caso de no existir tal usuario.
+
+deleteFalta: Parecido a getFalta, cuando se le pasa el id de una falta procede a borrarlo devolviendo 204. En caso de no existir tal usuario tira Error 404.
+
+createFalta: Cargando todos los ratos que sean obligatorios como el legajo del empleado que carga te permite crear una nueva falta.
+
+
+Guardias
+
+getGuardias: Con el simple llamado te trae todas las guardias cargadas en la base de datos.
+
+getGuardia: Si le pasas un id que este incluido en la base de datos te devuelve todos los datos cargados de esa guardia. En caso de no existir tira Error 404.
+
+getGuardiaEmpleado: Parecido a getGuardia, pasandole el legajo de un empleado te devuelve todas las guardias de dicho usuario tirando Error 404 en caso de no existir tal usuario.
+
+getCantGuardiasEmpleado: Al pasarle el legajo de un empleado te devuelve la cantidad de guardias que tiene cargadas dicho empleado. 
+En caso de no existir tal usuario tira Error 404.
+
+deleteGuardia: Parecido a getGuardia, cuando se le pasa el id de una guardia procede a borrarlo devolviendo 204. En caso de no existir tal usuario tira Error 404.
+
+createGuardia: Cargando todos los ratos que sean obligatorios como el legajo del empleado que carga te permite crear una nueva guardia.
+
+
+Licencias
+
+getLicencias: Con el simple llamado te trae todas las licencias cargadas en la base de datos.
+
+getLicencia: Si le pasas un id que este incluido en la base de datos te devuelve todos los datos cargados de esa licencia. En caso de no existir tira Error 404.
+
+getLicenciasEmpleado: Parecido a getLicencia, pasandole el legajo de un empleado te devuelve todas las licencias de dicho usuario tirando Error 404 en caso de no existir tal usuario.
+
+deleteLicencia: Parecido a getLicencia, cuando se le pasa el id de una licencia procede a borrarlo devolviendo 204. En caso de no existir tal usuario tira Error 404.
+
+createLicencia: Cargando todos los ratos que sean obligatorios como el legajo del empleado que carga te permite crear una nueva licencia.
