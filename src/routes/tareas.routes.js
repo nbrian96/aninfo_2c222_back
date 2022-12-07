@@ -19,6 +19,8 @@ router.get("/tareas/proyecto/:id", getTareaByProjectId);
 
 router.post("/tareas", createTarea);
 
+router.put("/tareas/:id", updateTarea);
+
 router.post("/tareas/:id/subtarea", createSubtarea);
 
 router.delete("/tareas/:id", deleteTarea);
