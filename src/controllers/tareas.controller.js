@@ -3,7 +3,7 @@ import { pooldb } from "../db.js";
 export const getTareas = async (req, res) => {
 	try {
 		let [rows] = await pooldb.query("select * from tbl_tarea");
-		res.json(rows);
+		res.status(200).json(rows);
 	} catch (error) {
 		return res.status(500).json({
 			message: "Something goes wrong",
@@ -23,7 +23,7 @@ export const getTarea = async (req, res) => {
 				message: "Tarea not found",
 			});
 
-		res.json(rows[0]);
+		res.status(200).json(rows[0]);
 	} catch (error) {
 		return res.status(500).json({
 			message: "Something goes wrong",
@@ -42,7 +42,7 @@ export const getTareaByProjectId = async (req, res) => {
 				message: "Tarea not found",
 			});
 
-		res.json(rows);
+		res.status(200).json(rows);
 	} catch (error) {
 		return res.status(500).json({
 			message: "Something goes wrong",
@@ -183,12 +183,25 @@ export const createSubtarea = async (req, res) => {
 	}
 };
 
+export const getSubtareas = async (req, res) => {
+	try {
+		let { id } = req.params;
+		let [rows] = await pooldb.query("select * from tbl_tarea where id_padre = ?", [id]);
+		
+		res.status(200).json(rows);
+	} catch (error) {
+		return res.status(500).json({
+			message: "Something goes wrong",
+		});
+	}
+};
+
 export const updateTarea = async (req, res) => {
 	try {
 		let { id } = req.params;
 
 		let attributesToUpdate = Object.fromEntries(Object.entries(req.body).filter(([_,v]) => v != ''));
-		
+
 		let [rows] = await pooldb.query("UPDATE tbl_tarea SET ? WHERE id = ?", [attributesToUpdate, id]);
 
 		if (rows.affectedRows < 1)
