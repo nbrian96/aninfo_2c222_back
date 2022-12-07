@@ -33,11 +33,10 @@ export const getTarea = async (req, res) => {
 
 export const getTareaByProjectId = async (req, res) => {
 	try {
-		// req.params -> guarda todos los parametros enviados
 		let [rows] = await pooldb.query("select * from tbl_tarea where id_proyecto = ?", [
 			req.params.id,
 		]);
-
+		
 		if (rows.length <= 0)
 			return res.status(404).json({
 				message: "Tarea not found",

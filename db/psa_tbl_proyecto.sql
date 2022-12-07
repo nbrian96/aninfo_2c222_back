@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `tbl_proyecto`;
 CREATE TABLE `tbl_proyecto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
+  `tipo` VARCHAR(45) NULL,
   `fecha_inicio` DATETIME NULL,
   `fecha_fin_estimado` DATETIME NULL,
   `estado` VARCHAR(45) NULL,

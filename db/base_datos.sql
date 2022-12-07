@@ -20,6 +20,7 @@ USE `psa` ;
 CREATE TABLE IF NOT EXISTS `psa`.`tbl_proyecto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
+  `tipo` VARCHAR(45) NULL,
   `fecha_inicio` DATETIME NULL,
   `fecha_fin_estimado` DATETIME NULL,
   `fecha_fin` DATETIME NULL,
