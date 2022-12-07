@@ -124,12 +124,11 @@ export const createTarea = async (req, res) => {
 
 export const createSubtarea = async (req, res) => {
 	try {
-		let { id } = req.params;
+		let { id_padre } = req.params;
 		let {
 			id_proyecto,
 			legajo_recurso,
 			id_ticket,
-			id_padre,
 			estado,
 			descripcion,
 			horas_estimadas,
@@ -138,7 +137,6 @@ export const createSubtarea = async (req, res) => {
 			fecha_inicio,
 			prioridad,
 		} = req.body;
-		id_padre = id;
 		
 		if (fecha_fin_estimado < fecha_inicio)
 			return res.status(400).json({
