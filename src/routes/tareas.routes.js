@@ -6,7 +6,7 @@ import {
 	updateTarea,
 	deleteTarea,
 	getTareaByProjectId,
-//	createSubtarea,
+	createSubtarea,
 } from "../controllers/tareas.controller.js";
 
 const router = Router();
@@ -21,7 +21,7 @@ router.post("/tareas", createTarea);
 
 router.post("/tareas/:id/", createTarea);
 
-//router.put("/tareas/:id/subtarea", createSubtarea);
+router.put("/tareas/:id/subtarea", createSubtarea);
 
 router.delete("/tareas/:id", deleteTarea);
 

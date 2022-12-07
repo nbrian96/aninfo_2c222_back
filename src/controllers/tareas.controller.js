@@ -36,7 +36,7 @@ export const getTareaByProjectId = async (req, res) => {
 		let [rows] = await pooldb.query("select * from tbl_tarea where id_proyecto = ?", [
 			req.params.id,
 		]);
-		
+
 		if (rows.length <= 0)
 			return res.status(404).json({
 				message: "Tarea not found",
@@ -72,6 +72,7 @@ export const createTarea = async (req, res) => {
 			id_proyecto,
 			legajo_recurso,
 			id_ticket,
+			id_padre,
 			estado,
 			descripcion,
 			horas_estimadas,
@@ -85,13 +86,14 @@ export const createTarea = async (req, res) => {
 			return res.status(400).json({
 				message: "La fecha de fin esperado no puede ser menor a la fecha de inicio"
 			});
-		
+
 		let [rows] = await pooldb.query(
 			"insert into tbl_tarea SET ?",
 			{
 				id_proyecto,
 				legajo_recurso,
 				id_ticket,
+				id_padre,
 				estado,
 				descripcion,
 				horas_estimadas,
@@ -106,6 +108,64 @@ export const createTarea = async (req, res) => {
 			id_proyecto,
 			legajo_recurso,
 			id_ticket,
+			id_padre,
+			estado,
+			descripcion,
+			horas_estimadas,
+			horas_reales,
+			fecha_fin,
+			fecha_inicio,
+			prioridad,
+		});
+	} catch (error) {
+		return res.status(500).send(error);
+	}
+};
+
+export const createSubtarea = async (req, res) => {
+	try {
+		let { id } = req.params;
+		let {
+			id_proyecto,
+			legajo_recurso,
+			id_ticket,
+			id_padre,
+			estado,
+			descripcion,
+			horas_estimadas,
+			horas_reales,
+			fecha_fin,
+			fecha_inicio,
+			prioridad,
+		} = req.body;
+		
+		if (fecha_fin_estimado < fecha_inicio)
+			return res.status(400).json({
+				message: "La fecha de fin esperado no puede ser menor a la fecha de inicio"
+			});
+		
+		let [rows] = await pooldb.query(
+			"insert into tbl_tarea SET ?",
+			{
+				id_proyecto,
+				legajo_recurso,
+				id_ticket,
+				id_padre: id,
+				estado,
+				descripcion,
+				horas_estimadas,
+				horas_reales,
+				fecha_fin,
+				fecha_inicio,
+				prioridad,
+			});
+		
+		res.status(200).json({
+			id: rows.insertId,
+			id_proyecto,
+			legajo_recurso,
+			id_ticket,
+			id_padre,
 			estado,
 			descripcion,
 			horas_estimadas,

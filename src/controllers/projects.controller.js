@@ -80,7 +80,7 @@ export const updateProject = async (req, res) => {
         let { id } = req.params;
 
         let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [req.body, id]);
-
+        
         if (rows.affectedRows < 1)
             return res.status(404).json({
                 message: "Project not found",
