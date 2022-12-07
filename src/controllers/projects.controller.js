@@ -80,7 +80,7 @@ export const updateProject = async (req, res) => {
 
         let elementsToUpdate = [];
         (req.body).map(function(element){
-            if(element !== '')
+            if(element !== "")
                 return elementsToUpdate.push(element);
         });
 
