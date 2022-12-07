@@ -33,8 +33,8 @@ CREATE TABLE `tbl_tarea` (
   `descripcion` MEDIUMTEXT NULL,
   `horas_estimadas` INT NULL,
   `horas_reales` INT NULL,
-  `fecha_inicio` DATETIME NULL,
-  `fecha_fin` DATETIME NULL,
+  `fecha_inicio` DATE NULL,
+  `fecha_fin` DATE NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
