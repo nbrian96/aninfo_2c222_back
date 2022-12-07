@@ -1,5 +1,4 @@
 import express from "express";
-import fetch from "node-fetch";
 
 import ticketsRoutes from "./routes/tickets.routes.js";
 import employeesRoutes from "./routes/employees.routes.js";
@@ -17,11 +16,8 @@ import clienteProdRoutes from "./routes/tbl_cliente_producto.routes.js";
 import clienteExtRoutes from "./routes/cliente_externo.routes.js";
 
 
-import cors from "cors"
 
 const app = express();
-
-app.use(cors())
 
 app.use(express.json());
 
