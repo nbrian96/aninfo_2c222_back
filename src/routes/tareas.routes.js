@@ -21,7 +21,7 @@ router.post("/tareas", createTarea);
 
 router.put("/tareas/:id", updateTarea);
 
-router.post("/tareas/:id/subtarea", createSubtarea);
+router.post("/tareas/:id/subtareas", createSubtarea);
 
 router.delete("/tareas/:id", deleteTarea);
 

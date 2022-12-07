@@ -81,12 +81,12 @@ export const createTarea = async (req, res) => {
 			fecha_inicio,
 			prioridad,
 		} = req.body;
-		
+
 		if (fecha_fin < fecha_inicio)
 			return res.status(400).json({
 				message: "La fecha de fin esperado no puede ser menor a la fecha de inicio"
 			});
-		
+
 		let [rows] = await pooldb.query(
 			"insert into tbl_tarea SET ?",
 			{
@@ -102,7 +102,7 @@ export const createTarea = async (req, res) => {
 				fecha_inicio,
 				prioridad,
 			});
-		
+
 		res.status(200).json({
 			id: rows.insertId,
 			id_proyecto,
@@ -117,9 +117,9 @@ export const createTarea = async (req, res) => {
 			fecha_inicio,
 			prioridad,
 		});
-		
+
 	} catch (error) {
-		
+
 		return res.status(500).send(error);
 	}
 };
@@ -142,12 +142,12 @@ export const createSubtarea = async (req, res) => {
 			fecha_inicio,
 			prioridad,
 		} = req.body;
-		
+
 		if (fecha_fin < fecha_inicio)
 			return res.status(400).json({
 				message: "La fecha de fin esperado no puede ser menor a la fecha de inicio"
 			});
-		
+
 		let [rows] = await pooldb.query(
 			"insert into tbl_tarea SET ?",
 			{
@@ -163,7 +163,7 @@ export const createSubtarea = async (req, res) => {
 				fecha_inicio,
 				prioridad,
 			});
-		
+
 		res.status(200).json({
 			id: rows.insertId,
 			id_proyecto,
