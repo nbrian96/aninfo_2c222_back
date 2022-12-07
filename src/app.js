@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors"
+
 
 import ticketsRoutes from "./routes/tickets.routes.js";
 import employeesRoutes from "./routes/employees.routes.js";
@@ -15,10 +17,9 @@ import prodVersionRoutes from "./routes/tbl_productos_y_versiones.routes.js";
 import clienteProdRoutes from "./routes/tbl_cliente_producto.routes.js";
 import clienteExtRoutes from "./routes/cliente_externo.routes.js";
 
-
-
 const app = express();
 
+app.use(cors())
 app.use(express.json());
 
 app.use("/api", ticketsRoutes);
