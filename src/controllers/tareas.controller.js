@@ -124,7 +124,10 @@ export const createTarea = async (req, res) => {
 
 export const createSubtarea = async (req, res) => {
 	try {
-		let { id_padre } = req.params;
+		let { id } = req.params;
+		let id_padre = id;
+		console.log(id);
+		console.log(id_padre);
 		let {
 			id_proyecto,
 			legajo_recurso,
