@@ -78,18 +78,8 @@ export const deleteProject = async (req, res) => {
 export const updateProject = async (req, res) => {
     try {
 
-        console.log(req.body);
+        let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [req.body, id]);
         
-        let attributesToUpdate = [];
-        (req.body).map(function(element){
-            if(element !== "")
-                return attributesToUpdate.push(element);
-        });
-
-        console.log(attributesToUpdate);
-
-        let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [attributesToUpdate, id]);
-
         if (rows.affectedRows < 1)
             return res.status(404).json({
                 message: "Project not found",
