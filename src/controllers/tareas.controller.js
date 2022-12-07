@@ -128,8 +128,7 @@ export const createSubtarea = async (req, res) => {
 	try {
 		let { id } = req.params;
 		let id_padre = parseInt(id);
-		console.log(id);
-		console.log(id_padre);
+		
 		let {
 			id_proyecto,
 			legajo_recurso,
@@ -187,7 +186,7 @@ export const getSubtareas = async (req, res) => {
 	try {
 		let { id } = req.params;
 		let [rows] = await pooldb.query("select * from tbl_tarea where id_padre = ?", [id]);
-		
+
 		res.status(200).json(rows);
 	} catch (error) {
 		return res.status(500).json({
