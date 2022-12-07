@@ -4,7 +4,8 @@ import {
 	getTarea,
 	createTarea,
 	updateTarea,
-	deleteTarea
+	deleteTarea,
+	getTareaByProjectId
 } from "../controllers/tareas.controller.js";
 
 const router = Router();
@@ -12,6 +13,8 @@ const router = Router();
 router.get("/tareas", getTareas);
 
 router.get("/tareas/:id", getTarea);
+
+router.get("tareas/proyecto/:id", getTareaByProjectId);
 
 router.post("/tareas", createTarea);
 

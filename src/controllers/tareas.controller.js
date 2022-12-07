@@ -31,6 +31,26 @@ export const getTarea = async (req, res) => {
 	}
 };
 
+export const getTareaByProjectId = async (req, res) => {
+	try {
+		// req.params -> guarda todos los parametros enviados
+		let [rows] = await pooldb.query("select * from tbl_tarea where id_proyecto = ?", [
+			req.params.id,
+		]);
+
+		if (rows.length <= 0)
+			return res.status(404).json({
+				message: "Tarea not found",
+			});
+
+		res.json(rows[0]);
+	} catch (error) {
+		return res.status(500).json({
+			message: "Something goes wrong",
+		});
+	}
+};
+
 export const deleteTarea = async (req, res) => {
 	try {
 		await pooldb.query("delete from tbl_horas where id_tarea = ?", [req.params.id,]);
