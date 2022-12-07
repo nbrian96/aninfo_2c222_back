@@ -77,6 +77,7 @@ export const deleteProject = async (req, res) => {
 
 export const updateProject = async (req, res) => {
     try {
+        let { id } = req.params;
 
         let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [req.body, id]);
 
