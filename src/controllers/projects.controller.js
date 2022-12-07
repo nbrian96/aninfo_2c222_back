@@ -11,7 +11,7 @@ export const getProjects = async (req, res) => {
 
 export const createProject = async (req, res) => {
     try {
-        const { nombre, fecha_inicio, fecha_fin, fecha_fin_estimado, horas_reales, descripción, project_manager, id_cliente, estado } = req.body;
+        const { nombre, fecha_inicio, fecha_fin, fecha_fin_estimado, horas_reales, descripción, project_manager, id_cliente, estado, tipo } = req.body;
 
         if (fecha_fin_estimado < fecha_inicio)
             return res.status(400).json({
@@ -28,9 +28,10 @@ export const createProject = async (req, res) => {
             project_manager,
             id_cliente,
             estado,
+            tipo
         });
 
-        return res.status(200).json({ nombre, fecha_inicio, fecha_fin_estimado, fecha_fin, horas_reales, descripción, project_manager, id_cliente, estado, id: result.insertId });
+        return res.status(200).json({ nombre, fecha_inicio, fecha_fin_estimado, fecha_fin, horas_reales, descripción, project_manager, id_cliente, estado, tipo, id: result.insertId });
     } catch (error) {
         const loQueEnvian = req.body;
         return res.status(500).send({ error, loQueEnvian });
