@@ -12,7 +12,7 @@ export const getProjects = async (req, res) => {
 export const createProject = async (req, res) => {
     try {
         const { nombre, fecha_inicio, fecha_fin, fecha_fin_estimado, horas_reales, descripción, project_manager, id_cliente, estado, tipo } = req.body;
-        
+
         if (fecha_fin_estimado < fecha_inicio)
             return res.status(400).json({
                 message: "La fecha de fin esperado no puede ser menor a la fecha de inicio"
@@ -30,7 +30,7 @@ export const createProject = async (req, res) => {
             estado,
             tipo
         });
-        
+
         return res.status(200).json({ nombre, fecha_inicio, fecha_fin_estimado, fecha_fin, horas_reales, descripción, project_manager, id_cliente, estado, tipo, id: result.insertId });
     } catch (error) {
         const loQueEnvian = req.body;
@@ -77,9 +77,9 @@ export const deleteProject = async (req, res) => {
 
 export const updateProject = async (req, res) => {
     try {
-
-        let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [req.body, id]);
         
+        let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [req.body, id]);
+
         if (rows.affectedRows < 1)
             return res.status(404).json({
                 message: "Project not found",
