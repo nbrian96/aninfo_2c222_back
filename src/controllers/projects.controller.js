@@ -13,6 +13,11 @@ export const createProject = async (req, res) => {
     try {
         const { nombre, fecha_inicio, fecha_fin, fecha_fin_estimado, horas_reales, descripción, project_manager, id_cliente, estado } = req.body;
         
+        if (fecha_fin_estimado < fecha_inicio)
+            return res.status(400).json({ 
+                message: "La fecha de fin esperado no puede ser menor a la fecha de inicio"
+             });
+        
         const [result] = await pooldb.query('INSERT INTO tbl_proyecto SET ?', {
             nombre,
             fecha_inicio,
