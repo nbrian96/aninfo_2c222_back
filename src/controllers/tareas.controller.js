@@ -43,7 +43,7 @@ export const getTareaByProjectId = async (req, res) => {
 				message: "Tarea not found",
 			});
 
-		res.json(rows[0]);
+		res.json(rows);
 	} catch (error) {
 		return res.status(500).json({
 			message: "Something goes wrong",
