@@ -80,7 +80,7 @@ export const updateProject = async (req, res) => {
         let { id } = req.params;
 
         let attributesToUpdate = Object.fromEntries(Object.entries(req.body).filter(([_,v]) => v != ''));
-        console.log(attributesToUpdate);
+        
         let [rows] = await pooldb.query("UPDATE tbl_proyecto SET ? WHERE id = ?", [attributesToUpdate, id]);
         
         if (rows.affectedRows < 1)

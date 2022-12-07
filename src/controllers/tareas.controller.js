@@ -187,7 +187,9 @@ export const updateTarea = async (req, res) => {
 	try {
 		let { id } = req.params;
 
-		let [rows] = await pooldb.query("UPDATE tbl_tarea SET ? WHERE id = ?", [req.body, id]);
+		let attributesToUpdate = Object.fromEntries(Object.entries(req.body).filter(([_,v]) => v != ''));
+		
+		let [rows] = await pooldb.query("UPDATE tbl_tarea SET ? WHERE id = ?", [attributesToUpdate, id]);
 
 		if (rows.affectedRows < 1)
 			return res.status(404).json({
